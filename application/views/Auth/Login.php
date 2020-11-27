@@ -29,7 +29,6 @@
                     <div class="col-12">
                         <button type="submit" class="btn btn-danger btn-block">Masuk</button>
                     </div>
-                    <!-- /.col -->
                 </div>
             </form>
 

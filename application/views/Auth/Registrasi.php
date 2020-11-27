@@ -61,24 +61,21 @@
                         </div>
                     </div>
                 </div>
-                <label for="exampleFormControlSelect1">Jurusan</label>
-                <select class="form-control mb-2" id="exampleFormControlSelect1">
-                    <option>Rekayasa Perangkat Lunak</option>
-                    <option>Perhotelan</option>
-                    <option>Tata Boga</option>
-                    <option>Tata Busana</option>
-                    <option>Usaha Perjalanan Wisata</option>
-                    <option>Guru dan Lainnya</option>
+                <label for="jurusan">Jurusan</label>
+                <select class="form-control mb-2" name="jurusan" id="jurusan">
+                    <option value="0">--Pilih Jurusan--</option>
+                    <?php foreach ($jurusan as $row) : ?>
+                        <option value="<?= $row->id_jurusan; ?>">
+                            <?= $row->jurusan; ?>
+                        </option>
+                    <?php endforeach; ?>
                 </select>
-                <label for="exampleFormControlSelect1">Kelas</label>
-                <select class="form-control mb-2" id="exampleFormControlSelect1">
-                    <option>X</option>
-                    <option>XI</option>
-                    <option>XII</option>
-                    <option>Lainnya</option>
+                <label for="kelas">Kelas</label>
+                <select class="form-control mb-2" name="kelas" id="kelas">
+                    <option value="0">--Pilih Kelas--</option>
                 </select>
                 <label for="exampleFormControlSelect1">Tipe Akun</label>
-                <select class="form-control mb-3" id="exampleFormControlSelect1">
+                <select class="form-control mb-3">
                     <option>Penjual</option>
                     <option>Pembeli</option>
                 </select>
@@ -95,3 +92,27 @@
         <!-- /.form-box -->
     </div><!-- /.card -->
 </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#jurusan').change(function() {
+            var id = $(this).val();
+            $.ajax({
+                url: "<?= base_url(); ?>/Auth/get_kelas",
+                method: "POST",
+                dataType: "json",
+                data: {
+                    id: id
+                },
+                success: function(array) {
+                    var html = '';
+                    for (let index = 0; index < array.length; index++) {
+                        html += "<option>" + array[index].kelas + "</option>"
+                    }
+                    $('#kelas').html(html);
+                }
+            })
+        })
+    })
+</script>
