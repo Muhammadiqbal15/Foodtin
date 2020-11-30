@@ -3,27 +3,37 @@
         <h4 style="color: white;">Food.Tin</h4>
     </div>
     <!-- /.login-logo -->
+    <div class="regist" data-regist="<?= $this->session->flashdata('message'); ?>"></div>
+    <div class="invalidlogin" data-invalid="<?= $this->session->flashdata('invalid'); ?>"></div>
+    <div class="noactive" data-noactive="<?= $this->session->flashdata('notactive'); ?>"></div>
+    <div class="falsepass" data-falsepass="<?= $this->session->flashdata('falsepass'); ?>"></div>
     <div class="card">
         <div class="card-body login-card-body">
             <p class="login-box-msg">Masuk</p>
 
-            <form action="../../index3.html" method="post">
+            <form action="<?= base_url('Auth/index'); ?>" method="post">
                 <div class="input-group mb-3">
-                    <input type="email" class="form-control" placeholder="Email">
+                    <input type="text" class="form-control" placeholder="Username" name="username" value="<?= set_value('username'); ?>">
                     <div class="input-group-append">
                         <div class="input-group-text">
-                            <span class="fas fa-envelope"></span>
+                            <span class="fas fa-user"></span>
                         </div>
                     </div>
                 </div>
+                <small class="text-danger">
+                    <?= form_error('username'); ?>
+                </small>
                 <div class="input-group mb-3">
-                    <input type="password" class="form-control" placeholder="Password">
+                    <input type="password" class="form-control" placeholder="Password" name="pass">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-lock"></span>
                         </div>
                     </div>
                 </div>
+                <small class="text-danger">
+                    <?= form_error('pass'); ?>
+                </small>
                 <div class="row">
                     <!-- /.col -->
                     <div class="col-12">

@@ -7,60 +7,92 @@
         <div class="card-body register-card-body">
             <p class="login-box-msg">Daftar Akun Baru</p>
 
-            <form action="../../index.html" method="post">
+            <form action="<?= base_url('Auth/regis'); ?>" method="post">
                 <div class="form-row">
                     <div class="col">
                         <div class="input-group mb-2">
-                            <input type="text" class="form-control" placeholder="Nama/Nama Kantin">
+                            <input type="text" class="form-control" placeholder="Nama Kantin/Username" name="username" value="<?= set_value('username') ?>">
                             <div class="input-group-append">
                                 <div class="input-group-text">
                                     <span class="fas fa-user"></span>
                                 </div>
                             </div>
                         </div>
+                        <small class="text-danger">
+                            <?= form_error('username'); ?>
+                        </small>
                     </div>
                     <div class="col">
                         <div class="input-group mb-2">
-                            <input type="email" class="form-control" placeholder="Email">
+                            <input type="text" class="form-control" placeholder="Nama/Nama Kantin" name="name" value="<?= set_value('name') ?>">
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-user"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <small class="text-danger">
+                            <?= form_error('name'); ?>
+                        </small>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col">
+                        <div class="input-group mb-2">
+                            <input type="password" class="form-control" placeholder="Password" name="pass">
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-lock"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <small class="text-danger">
+                            <?= form_error('pass'); ?>
+                        </small>
+                    </div>
+                    <div class="col">
+                        <div class="input-group mb-2">
+                            <input type="password" class="form-control" placeholder="Ulangi password" name="repass">
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-lock"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <small class="text-danger">
+                            <?= form_error('repass'); ?>
+                        </small>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col">
+                        <div class="input-group mb-2">
+                            <input type="email" class="form-control" placeholder="Email" name="email" value="<?= set_value('email') ?>">
                             <div class="input-group-append">
                                 <div class="input-group-text">
                                     <span class="fas fa-envelope"></span>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="col">
-                        <div class="input-group mb-2">
-                            <input type="password" class="form-control" placeholder="Password">
-                            <div class="input-group-append">
-                                <div class="input-group-text">
-                                    <span class="fas fa-lock"></span>
-                                </div>
-                            </div>
-                        </div>
+                        <small class="text-danger">
+                            <?= form_error('email'); ?>
+                        </small>
                     </div>
                     <div class="col">
                         <div class="input-group mb-2">
-                            <input type="password" class="form-control" placeholder="Ulangi password">
+                            <input type="text" class="form-control" placeholder="Nomor Handphone/Whatsapp" name="nohp" value="<?= set_value('nohp') ?>">
                             <div class="input-group-append">
                                 <div class="input-group-text">
-                                    <span class="fas fa-lock"></span>
+                                    <span class="fas fa-phone"></span>
                                 </div>
                             </div>
                         </div>
+                        <small class="text-danger">
+                            <?= form_error('nohp'); ?>
+                        </small>
                     </div>
                 </div>
 
-                <div class="input-group mb-2">
-                    <input type="text" class="form-control" placeholder="Nomor Handphone/Whatsapp">
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <span class="fas fa-phone"></span>
-                        </div>
-                    </div>
-                </div>
                 <label for="jurusan">Jurusan</label>
                 <select class="form-control mb-2" name="jurusan" id="jurusan">
                     <option value="0">--Pilih Jurusan--</option>
@@ -74,8 +106,8 @@
                 <select class="form-control mb-2" name="kelas" id="kelas">
                     <option value="0">--Pilih Kelas--</option>
                 </select>
-                <label for="exampleFormControlSelect1">Tipe Akun</label>
-                <select class="form-control mb-3">
+                <label for="tipe">Tipe Akun</label>
+                <select class="form-control mb-3" name="tipe">
                     <option>Penjual</option>
                     <option>Pembeli</option>
                 </select>
@@ -108,7 +140,7 @@
                 success: function(array) {
                     var html = '';
                     for (let index = 0; index < array.length; index++) {
-                        html += "<option>" + array[index].kelas + "</option>"
+                        html += "<option value='" + array[index].id_kelas + "'>" + array[index].kelas + "</option>"
                     }
                     $('#kelas').html(html);
                 }

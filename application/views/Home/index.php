@@ -1,3 +1,5 @@
+<div class="successlogin" data-successlogin="<?= $this->session->flashdata('successlogin'); ?>"></div>
+<div class="successlogout" data-successlogout="<?= $this->session->flashdata('successlogout'); ?>"></div>
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #CE3232;">
     <a class="navbar-brand" href="<?= base_url(); ?>LandingPage/index">Food.Tin</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -12,24 +14,45 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="<?= base_url(); ?>Home/aboutdev">AboutDev</a>
                 </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="<?= base_url(); ?>Home/Makring">MakananRingan</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="<?= base_url(); ?>Home/Makber">MakananBerat</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="<?= base_url(); ?>Home/Minuman">Minuman</a>
-                </li>
-            </ul>
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="<?= base_url(); ?>Auth/index">Login</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="<?= base_url(); ?>Auth/regis">Registrasi</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Product
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="<?= base_url(); ?>Home/Minuman">Minuman</a>
+                        <a class="dropdown-item" href="<?= base_url(); ?>Home/Makber">MakananBerat</a>
+                        <a class="dropdown-item" href="<?= base_url(); ?>Home/Makring">MakananRingan</a>
+                    </div>
                 </li>
             </ul>
+
+            <?php if (!$this->session->userdata('username')) : ?>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="<?= base_url() ?>Auth/index">Login<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="<?= base_url() ?>Auth/regis">Registrasi<span class="sr-only">(current)</span></a>
+                    </li>
+                </ul>
+            <?php else : ?>
+                <?php $role = $this->session->userdata('role_id');  ?>
+                <?php if ($role > 1) : ?>
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="<?= base_url() ?>User/index"><?= $user['name']; ?>
+                                <img src="<?= base_url(); ?>/asset/img/<?= $user['image']; ?>" alt="" width="30" height="30" class="rounded-circle ml-1 img-fluid "><span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                    </ul>
+                <?php else : ?>
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="<?= base_url() ?>Admin/index"><?= $user['name']; ?><span class="sr-only">(current)</span></a>
+                        </li>
+                    </ul>
+                <?php endif; ?>
+            <?php endif; ?>
         </div>
     </div>
 </nav>
