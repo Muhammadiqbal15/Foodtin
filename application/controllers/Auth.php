@@ -13,6 +13,20 @@ class Auth extends CI_Controller
 
     public function index()
     {
+
+        $role = $this->session->userdata('role_id');
+        $tipe = $this->session->userdata('tipe');
+        if ($this->session->userdata('username')) {
+            if ($role > 1) {
+                if ($tipe != "Penjual") {
+                    redirect('User/Userpembeli');
+                } else {
+                    redirect('User/Userpenjual');
+                }
+            } else {
+                redirect('Admin/index');
+            }
+        }
         $this->form_validation->set_rules('username', 'Email', 'required|trim');
         $this->form_validation->set_rules('pass', 'Password', 'required|trim');
 
@@ -49,13 +63,15 @@ class Auth extends CI_Controller
                         'jurusan' => $user['jurusan']
                     ];
                     $this->session->set_userdata($data);
-                    $this->session->set_flashdata('successlogin', $this->session->userdata('username'));
+
                     if ($user['role_id'] == 1) {
                         redirect('Admin/index');
                     } else {
                         if ($user['tipeakun'] == "Penjual") {
+                            $this->session->set_flashdata('successlogin', $this->session->userdata('username'));
                             redirect('User/Userpenjual');
                         } else {
+                            $this->session->set_flashdata('successlogin', $this->session->userdata('username'));
                             redirect('User/Userpembeli');
                         }
                     }
@@ -75,6 +91,20 @@ class Auth extends CI_Controller
 
     public function regis()
     {
+
+        $role = $this->session->userdata('role_id');
+        $tipe = $this->session->userdata('tipe');
+        if ($this->session->userdata('username')) {
+            if ($role > 1) {
+                if ($tipe != "Penjual") {
+                    redirect('User/Userpembeli');
+                } else {
+                    redirect('User/Userpenjual');
+                }
+            } else {
+                redirect('Admin/index');
+            }
+        }
         $this->form_validation->set_rules('username', 'Username', 'required|trim');
         $this->form_validation->set_rules('name', 'Nama', 'required|trim', [
             'required' => 'Nama atau Nama Kantin Harus Diisi'

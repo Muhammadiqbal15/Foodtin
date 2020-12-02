@@ -14,7 +14,10 @@ class Foodtin_model extends CI_Model
         return $query->result_array();
     }
 
-
+    public function updateuser($data, $kondisi)
+    {
+        $this->db->update('user', $data, $kondisi);
+    }
 
     public function getJurusan()
     {

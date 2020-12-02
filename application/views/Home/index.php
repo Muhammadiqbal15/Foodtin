@@ -36,15 +36,28 @@
                     </li>
                 </ul>
             <?php else : ?>
-                <?php $role = $this->session->userdata('role_id');  ?>
+                <?php
+                $role = $this->session->userdata('role_id');
+                $tipe = $this->session->userdata('tipe');
+                ?>
                 <?php if ($role > 1) : ?>
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="<?= base_url() ?>User/index"><?= $user['name']; ?>
-                                <img src="<?= base_url(); ?>/asset/img/<?= $user['image']; ?>" alt="" width="30" height="30" class="rounded-circle ml-1 img-fluid "><span class="sr-only">(current)</span>
-                            </a>
-                        </li>
-                    </ul>
+                    <?php if ($tipe != "Penjual") : ?>
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="<?= base_url() ?>User/Userpembeli"><?= $user['name']; ?>
+                                    <img src="<?= base_url(); ?>/asset/img/<?= $user['image']; ?>" alt="" width="30" height="30" class="rounded-circle ml-1 img-fluid "><span class="sr-only">(current)</span>
+                                </a>
+                            </li>
+                        </ul>
+                    <?php else : ?>
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="<?= base_url() ?>User/Userpenjual"><?= $user['name']; ?>
+                                    <img src="<?= base_url(); ?>/asset/img/<?= $user['image']; ?>" alt="" width="30" height="30" class="rounded-circle ml-1 img-fluid "><span class="sr-only">(current)</span>
+                                </a>
+                            </li>
+                        </ul>
+                    <?php endif; ?>
                 <?php else : ?>
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item active">

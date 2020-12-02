@@ -28,9 +28,11 @@
 <!-- AdminLTE App -->
 <script src="<?= base_url(); ?>asset/Layout/dist/js/adminlte.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="<?= base_url(); ?>asset/Layout/dist/js/pages/dashboard.js"></script>
+<!-- <script src="<?= base_url(); ?>asset/Layout/dist/js/pages/dashboard.js"></script> -->
 <!-- AdminLTE for demo purposes -->
 <script src="<?= base_url(); ?>asset/Layout/dist/js/demo.js"></script>
+<script src="<?= base_url(); ?>asset/Layout/plugins/sweetalert2/sweetalert2.all.min.js"></script>
+<script src="<?= base_url(); ?>asset/Layout/dist/js/myscript.js"></script>
 </body>
 
 </html>

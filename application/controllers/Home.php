@@ -7,7 +7,7 @@ class Home extends CI_Controller
     {
         $data['title'] = "Home";
 
-        $data['user'] = $this->db->get_where('user', ['name' => $this->session->userdata('username')])->row_array();
+        $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
         $this->load->view('TemplateHome/Header', $data);
         $this->load->view('Home/index', $data);
         $this->load->view('TemplateHome/Footer');

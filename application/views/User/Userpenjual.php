@@ -88,7 +88,7 @@
       <div class="container-fluid">
         <div class="row mb-3 mt-3">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Dashboard User Pembeli</h1>
+            <h1 class="m-0 text-dark">Dashboard User Penjual</h1>
           </div><!-- /.col -->
         </div><!-- /.row -->
         <div class="row mt-4">

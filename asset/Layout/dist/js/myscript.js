@@ -4,6 +4,9 @@ const notactive = $('.noactive').data('noactive');
 const falsepass = $('.falsepass').data('falsepass');
 const suclogin = $('.successlogin').data('successlogin');
 const suclogout = $('.successlogout').data('successlogout');
+const falseoldpass = $('.falseoldpass').data('falseoldpass');
+const notmatchnew = $('.notmatchnew').data('notmatchnew');
+const sukses = $('.sukses').data('sukses');
 
 if(regis){
     Swal.fire({
@@ -43,6 +46,26 @@ if(regis){
 }else if(suclogout){
     Swal.fire({
         title: 'Berhasil ' + suclogout,
+        type: 'success',
+        icon: 'success'
+    });
+}else if(falseoldpass){
+    Swal.fire({
+        title: 'Gagal Ubah Password',
+        text: falseoldpass,
+        type: 'warning',
+        icon: 'warning'
+    });
+}else if(notmatchnew){
+    Swal.fire({
+        title: 'Gagal Ubah Password',
+        text: notmatchnew,
+        type: 'warning',
+        icon: 'warning'
+    });
+}else if(sukses){
+    Swal.fire({
+        title: 'Password ' + sukses,
         type: 'success',
         icon: 'success'
     });

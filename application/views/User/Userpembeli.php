@@ -1,5 +1,6 @@
 <div class="wrapper">
-
+    <div class="successlogin" data-successlogin="<?= $this->session->flashdata('successlogin'); ?>"></div>
+    <div class="sukses" data-sukses="<?= $this->session->flashdata('sukses'); ?>"></div>
     <!-- Navbar -->
     <nav class="main-header navbar navbar-expand navbar-white navbar-light">
         <!-- Left navbar links -->
@@ -10,22 +11,12 @@
         </ul>
 
         <!-- SEARCH FORM -->
-        <form class="form-inline ml-3">
-            <div class="input-group input-group-sm">
-                <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-                <div class="input-group-append">
-                    <button class="btn btn-navbar" type="submit">
-                        <i class="fas fa-search"></i>
-                    </button>
-                </div>
-            </div>
-        </form>
 
         <!-- Right navbar links -->
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
                 <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#">
-                    <?= $user['name']; ?>
+                    <?= $user['username']; ?>
                     <img src="<?= base_url(); ?>asset/img/<?= $user['image']; ?>" class=" img-circle elevation-2 img-fluid" alt="Foto Profile" width="30" height="30">
                 </a>
             </li>
@@ -41,7 +32,7 @@
             <!-- Sidebar user panel (optional) -->
             <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                 <div class="info">
-                    <a href="#" class="d-block">Selamat Datang <?= $user['name']; ?></a>
+                    <a href="#" class="d-block">Selamat Datang <?= $user['username']; ?></a>
                 </div>
             </div>
 
@@ -101,66 +92,61 @@
                                     <img class="img-circle elevation-2" src="<?= base_url(); ?>/asset/img/<?= $user['image']; ?>" alt="User Avatar">
                                 </div>
                                 <!-- /.widget-user-image -->
-                                <h3 class="widget-user-username"><?= $user['name']; ?></h3>
+                                <h3 class="widget-user-username"><?= $user['username']; ?></h3>
                                 <h5 class="widget-user-desc"><?= $user['tipeakun']; ?></h5>
                             </div>
                             <div class="card-footer p-0">
-                                <ul class="nav flex-column">
-                                    <li class="nav-item">
-                                        <h5 class="nav-link">
+                                <ul class="list-group">
+                                    <li class="list-group-item">
+                                        <h5 class="nav-link" style="font-size: 20px;">
 
                                             <?= $user['username']; ?>
-                                            <span class="float-right badge bg-dark"><i class="nav-icon fas fa-user"></i></span>
+                                            <i class="nav-icon fas fa-user float-right fa-lg"></i>
                                         </h5>
                                     </li>
-                                    <li class="nav-item">
-                                        <h5 class="nav-link">
+                                    <li class="list-group-item">
+                                        <h5 class="nav-link" style="font-size: 20px;">
 
                                             <?= $user['name']; ?>
-                                            <span class="float-right badge bg-dark"><i class="nav-icon fas fa-user"></i></span>
+                                            <i class="nav-icon far fa-user float-right fa-lg"></i></i>
                                         </h5>
                                     </li>
-                                    <li class="nav-item">
-                                        <h5 class="nav-link">
+                                    <li class="list-group-item">
+                                        <h5 class="nav-link" style="font-size: 20px;">
 
                                             <?= $user['email']; ?>
-                                            <span class="float-right badge bg-dark"><i class="nav-icon fas fa-envelope"></i></span>
+                                            <i class="nav-icon fas fa-envelope float-right fa-lg"></i>
                                         </h5>
                                     </li>
-                                    <li class="nav-item">
-                                        <h5 class="nav-link">
+                                    <li class="list-group-item">
+                                        <h5 class="nav-link" style="font-size: 20px;">
 
                                             <?= $user['nohp']; ?>
-                                            <span class="float-right badge bg-dark"><i class="nav-icon fas fa-phone "></i></span>
+                                            <i class="nav-icon fas fa-phone float-right fa-lg"></i>
                                         </h5>
                                     </li>
                                     <?php foreach ($jurusan as $jrs) : ?>
-                                        <li class="nav-item">
-                                            <h5 class="nav-link">
+                                        <li class="list-group-item">
+                                            <h5 class="nav-link" style="font-size: 20px;">
 
                                                 <?= $jrs['jurusan']; ?>
-                                                <span class="float-right badge bg-dark"><i class="nav-icon fas fa-phone "></i></span>
+                                                <i class="fas fa-graduation-cap float-right fa-lg"></i>
                                             </h5>
                                         </li>
-                                        <li class="nav-item">
-                                            <h5 class="nav-link">
+                                        <li class="list-group-item">
+                                            <h5 class="nav-link" style="font-size: 20px;">
 
                                                 <?= $jrs['kelas']; ?>
-                                                <span class="float-right badge bg-dark"><i class="nav-icon fas fa-phone "></i></span>
+                                                <i class="nav-icon fas fa-book-reader float-right fa-lg"></i>
                                             </h5>
                                         </li>
                                     <?php endforeach; ?>
-                                    <li class="nav-item">
-                                        <h5 class="nav-link">
+                                    <li class="list-group-item">
+                                        <h5 class="nav-link" style="font-size: 20px;">
 
                                             <?= $user['tipeakun']; ?>
-                                            <span class="float-right badge bg-dark"><i class="nav-icon fas fa-phone "></i></span>
+                                            <i class="fas fa-users-cog float-right fa-lg"></i>
                                         </h5>
-                                    </li>
-                                    <li class="nav-item">
-                                        <h4 class="nav-link">
-                                            <a href="<?= base_url(); ?>User/Editprori" class="btn btn-primary">Edit Profil</a>
-                                        </h4>
                                     </li>
                                 </ul>
                             </div>
@@ -169,11 +155,17 @@
                     <div class="col-md-6">
                         <!-- Widget: user widget style 2 -->
                         <div class="card card-widget widget-user-2">
+                            <div class="card-body justify-content-center d-flex">
+                                <img src="<?= base_url(); ?>/asset/img/<?= $user['image']; ?>" alt="" class="img-fluid img-circle mt-5">
+                            </div>
                             <div class="card-body">
-                                <img src="<?= base_url(); ?>/asset/img/<?= $user['image']; ?>" alt="" class="img-fluid img-circle">
+                                <a href="<?= base_url(); ?>User/Editprofilpembeli" class="btn btn-primary"><i class="fas fa-user-edit"></i> Edit Profil</a>
+                                <a href="<?= base_url(); ?>User/changePasswordpembeli" class="btn btn-success"><i class="fas fa-key"></i> Ubah Password</a>
                                 <br>
-                                <a href="" class="btn btn-primary">Edit Foto</a>
-                                <a href="" class="btn btn-success">Ubah Password</a>
+                                <a href="<?= base_url(); ?>User/perbaruikelaspembeli" class="btn btn-danger mt-2"><i class="fas fa-arrow-up"></i> Perbarui Kelas</a>
+                            </div>
+                            <div class="card-body">
+
                             </div>
                         </div>
                     </div>
@@ -181,18 +173,6 @@
             </div><!-- /.container-fluid -->
         </div>
         <!-- /.content-header -->
-
-        <!-- Main content -->
-        <section class="content">
-            <div class="container-fluid">
-                <!-- Small boxes (Stat box) -->
-
-                <!-- /.row -->
-                <!-- Main row -->
-
-                <!-- /.row (main row) -->
-            </div><!-- /.container-fluid -->
-        </section>
         <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
