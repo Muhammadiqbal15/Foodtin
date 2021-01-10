@@ -30,4 +30,49 @@ class Admin extends CI_Controller
         $this->load->view('Admin/index', $data);
         $this->load->view('TemplateAdmin/FooterAdmin');
     }
+
+    public function ReqRPL()
+    {
+        $data['title'] = "RequestRPL";
+        $data['user'] = $this->db->get_where('user', ['name' => $this->session->userdata('username')])->row_array();
+        $this->load->view('TemplateAdmin/HeaderAdmin', $data);
+        $this->load->view('Admin/ReqRPL', $data);
+        $this->load->view('TemplateAdmin/FooterAdmin');
+    }
+
+    public function ReqTABOG()
+    {
+        $data['title'] = "RequestTABOG";
+        $data['user'] = $this->db->get_where('user', ['name' => $this->session->userdata('username')])->row_array();
+        $this->load->view('TemplateAdmin/HeaderAdmin', $data);
+        $this->load->view('Admin/ReqTABOG', $data);
+        $this->load->view('TemplateAdmin/FooterAdmin');
+    }
+
+    public function ReqTABUS()
+    {
+        $data['title'] = "RequestTABUS";
+        $data['user'] = $this->db->get_where('user', ['name' => $this->session->userdata('username')])->row_array();
+        $this->load->view('TemplateAdmin/HeaderAdmin', $data);
+        $this->load->view('Admin/ReqTABUS', $data);
+        $this->load->view('TemplateAdmin/FooterAdmin');
+    }
+
+    public function ReqHotel()
+    {
+        $data['title'] = "RequestHotel";
+        $data['user'] = $this->db->get_where('user', ['name' => $this->session->userdata('username')])->row_array();
+        $this->load->view('TemplateAdmin/HeaderAdmin', $data);
+        $this->load->view('Admin/ReqHotel', $data);
+        $this->load->view('TemplateAdmin/FooterAdmin');
+    }
+
+    public function ReqUPW()
+    {
+        $data['title'] = "RequestUPW";
+        $data['user'] = $this->db->get_where('user', ['name' => $this->session->userdata('username')])->row_array();
+        $this->load->view('TemplateAdmin/HeaderAdmin', $data);
+        $this->load->view('Admin/ReqUPW', $data);
+        $this->load->view('TemplateAdmin/FooterAdmin');
+    }
 }

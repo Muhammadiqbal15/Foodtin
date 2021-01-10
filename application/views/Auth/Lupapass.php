@@ -10,45 +10,31 @@
     <div class="activate" data-activate="<?= $this->session->flashdata('activate'); ?>"></div>
     <div class="card">
         <div class="card-body login-card-body">
-            <p class="login-box-msg">Masuk</p>
+            <p class="login-box-msg">Lupa Password</p>
             <?= $this->session->flashdata('eroremail'); ?>
-            <form action="<?= base_url('Auth/index'); ?>" method="post">
+            <form action="<?= base_url('Auth/forgotPassword'); ?>" method="post">
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Username" name="username">
+                    <input type="text" class="form-control" placeholder="Email" name="email">
                     <div class="input-group-append">
                         <div class="input-group-text">
-                            <span class="fas fa-user"></span>
+                            <span class="fas fa-envelope"></span>
                         </div>
                     </div>
                 </div>
                 <small class="text-danger">
-                    <?= form_error('username'); ?>
-                </small>
-                <div class="input-group mb-3">
-                    <input type="password" class="form-control" placeholder="Password" name="pass">
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <span class="fas fa-lock"></span>
-                        </div>
-                    </div>
-                </div>
-                <small class="text-danger">
-                    <?= form_error('pass'); ?>
+                    <?= form_error('email'); ?>
                 </small>
                 <div class="row">
                     <!-- /.col -->
                     <div class="col-12">
-                        <button type="submit" class="btn btn-danger btn-block">Masuk</button>
+                        <button type="submit" class="btn btn-danger btn-block">Reset Password</button>
                     </div>
                 </div>
             </form>
 
             <div class="mt-3">
-                <p class="mb-1">
-                    <a href="<?= base_url('Auth/forgotPassword'); ?>">Lupa Password?</a>
-                </p>
                 <p class="mb-0">
-                    <a href="<?= base_url('Auth/regis'); ?>" class="text-center">Buat Akun?</a>
+                    <a href="<?= base_url('Auth/index'); ?>" class="text-center">Kembali Ke Login</a>
                 </p>
             </div>
         </div>

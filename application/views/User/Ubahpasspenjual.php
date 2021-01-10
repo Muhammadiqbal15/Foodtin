@@ -1,6 +1,6 @@
 <div class="wrapper">
-    <div class="successlogin" data-successlogin="<?= $this->session->flashdata('successlogin'); ?>"></div>
-    <div class="sukses" data-sukses="<?= $this->session->flashdata('sukses'); ?>"></div>
+    <div class="falseoldpass" data-falseoldpass="<?= $this->session->flashdata('falseoldpass'); ?>"></div>
+    <div class="notmatchnew" data-notmatchnew="<?= $this->session->flashdata('notmatchnew'); ?>"></div>
     <!-- Navbar -->
     <nav class="main-header navbar navbar-expand navbar-white navbar-light">
         <!-- Left navbar links -->
@@ -72,49 +72,58 @@
         <!-- /.sidebar -->
     </aside>
 
+    <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
-        <section class="content-header">
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
             <div class="container-fluid">
                 <div class="row mb-3 mt-3">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark">Perbarui Kelas Mu</h1>
+                        <h1 class="m-0 text-dark">Ubah Password</h1>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
                 <div class="row">
                     <div class="col-lg-6">
-                        <form action="<?= base_url(); ?>User/updatekelaspembeli" method="POST">
+                        <form action="<?= base_url(); ?>User/changePasswordpenjual" method="POST">
                             <div class="form-group">
-                                <label for="nama">Nama</label>
-                                <input type="text" class="form-control" id="nama" name="name" value="<?= $user['name']; ?>" readonly>
-                            </div>
-                            <?php foreach ($jurusan as $jrs) : ?>
-                                <div class="form-group">
-                                    <label for="jurusan">Jurusan</label>
-                                    <input type="text" class="form-control" id="text" name="jurusan" value="<?= $jrs['jurusan']; ?>" readonly>
-                                </div>
-                                <div class="form-group">
-                                    <label for="kelas">Status Kelas Sebelum nya</label>
-                                    <input type="text" class="form-control" id="text" name="kelas" value="<?= $jrs['kelas']; ?>" readonly>
-                                </div>
-                            <?php endforeach; ?>
-                            <div class="form-group">
-                                <label for="tipe">Tipe</label>
-                                <input type="text" class="form-control" id="tipe" name="tipe" value="<?= $user['tipeakun']; ?>" readonly>
-                            </div>
-                            <div class="form-group">
-                                <label for="Kelas">Naik Ke Kelas-</label>
-                                <input type="kls" class="form-control" id="Kelas" name="kls" placeholder="Kelas">
+                                <label for="passlama">Password Saat ini</label>
+                                <input type="password" class="form-control" id="passlama" name="passlama" placeholder="Password Lama">
                             </div>
                             <small class="text-danger">
-                                <?= form_error('kls'); ?>
+                                <?= form_error('passlama'); ?>
                             </small>
-                            <a href="<?= base_url(); ?>User/Userpembeli" class="btn btn-success">Kembali</a>
-                            <button type="submit" name="ubahpass" class="btn btn-primary">Request</button>
+                            <div class="form-group">
+                                <label for="passbaru">Password Baru</label>
+                                <input type="password" class="form-control" id="passbaru" name="passbaru" placeholder="Password Baru">
+                            </div>
+                            <small class="text-danger">
+                                <?= form_error('passbaru'); ?>
+                            </small>
+                            <div class="form-group">
+                                <label for="repassbaru">Ulangi Password Baru</label>
+                                <input type="password" class="form-control" id="repassbaru" name="repassbaru" placeholder="Ulangi Password Baru">
+                            </div>
+
+                            <a href="<?= base_url(); ?>User/Userpenjual" class="btn btn-success">Kembali</a>
+                            <button type="submit" name="ubahpass" class="btn btn-primary">Ubah Password</button>
                         </form>
                     </div>
                 </div>
-            </div>
-        </section>
+            </div><!-- /.container-fluid -->
+        </div>
+        <!-- /.content-header -->
+        <!-- /.content -->
     </div>
+    <!-- /.content-wrapper -->
+    <footer class="py-5 col-lg-12 mt-5" style="background-color: #CE3232;">
+        <div class="container">
+            <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
+        </div>
+    </footer>
 
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
 </div>

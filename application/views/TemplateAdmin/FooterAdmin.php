@@ -7,6 +7,10 @@
 </script>
 <!-- Bootstrap 4 -->
 <script src="<?= base_url(); ?>asset/Layout/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="<?= base_url(); ?>asset/Layout/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="<?= base_url(); ?>asset/Layout/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="<?= base_url(); ?>asset/Layout/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="<?= base_url(); ?>asset/Layout/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
 <!-- ChartJS -->
 <script src="<?= base_url(); ?>asset/Layout/plugins/chart.js/Chart.min.js"></script>
 <!-- Sparkline -->
@@ -33,6 +37,18 @@
 <script src="<?= base_url(); ?>asset/Layout/dist/js/demo.js"></script>
 <script src="<?= base_url(); ?>asset/Layout/plugins/sweetalert2/sweetalert2.all.min.js"></script>
 <script src="<?= base_url(); ?>asset/Layout/dist/js/myscript.js"></script>
+
+<script>
+    $(function() {
+        $("#mytable").DataTable({
+            "responsive": true,
+            "autoWidth": false,
+            "searching": true,
+            "paging": true,
+        });
+    });
+</script>
+
 </body>
 
 </html>

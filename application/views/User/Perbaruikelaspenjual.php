@@ -82,7 +82,7 @@
                 </div><!-- /.row -->
                 <div class="row">
                     <div class="col-lg-6">
-                        <form action="<?= base_url(); ?>User/updatekelaspembeli" method="POST">
+                        <form action="<?= base_url(); ?>User/updatekelaspenjual" method="POST">
                             <div class="form-group">
                                 <label for="nama">Nama</label>
                                 <input type="text" class="form-control" id="nama" name="name" value="<?= $user['name']; ?>" readonly>

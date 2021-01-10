@@ -71,31 +71,31 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="<?= base_url(); ?>Admin/ReqRPL" class="nav-link">
+                                <a href="../layout/top-nav.html" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Rekayasa Perangkat Lunak</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?= base_url(); ?>Admin/ReqTABOG" class="nav-link">
+                                <a href="../layout/top-nav-sidebar.html" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Tata Boga</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?= base_url(); ?>Admin/ReqTABUS" class="nav-link">
+                                <a href="../layout/boxed.html" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Tata Busana</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?= base_url(); ?>Admin/Hotel" class="nav-link">
+                                <a href="../layout/fixed-sidebar.html" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Perhotelan</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?= base_url(); ?>Admin/UPW" class="nav-link">
+                                <a href="../layout/fixed-topnav.html" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Usaha Perjalanan Wisata</p>
                                 </a>

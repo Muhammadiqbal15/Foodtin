@@ -1,5 +1,7 @@
 <div class="wrapper">
-
+    <div class="successlogin" data-successlogin="<?= $this->session->flashdata('successlogin'); ?>"></div>
+    <div class="sukses" data-sukses="<?= $this->session->flashdata('sukses'); ?>"></div>
+    <div class="done" data-done="<?= $this->session->flashdata('done'); ?>"></div>
     <!-- Navbar -->
     <nav class="main-header navbar navbar-expand navbar-white navbar-light">
         <!-- Left navbar links -->
@@ -7,28 +9,15 @@
             <li class="nav-item">
                 <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
             </li>
-            <li class="nav-item d-none d-sm-inline-block">
-                <a href="index3.html" class="nav-link">Home</a>
-            </li>
         </ul>
 
         <!-- SEARCH FORM -->
-        <form class="form-inline ml-3">
-            <div class="input-group input-group-sm">
-                <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-                <div class="input-group-append">
-                    <button class="btn btn-navbar" type="submit">
-                        <i class="fas fa-search"></i>
-                    </button>
-                </div>
-            </div>
-        </form>
 
         <!-- Right navbar links -->
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
                 <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#">
-                    <?= $user['name']; ?>
+                    <?= $user['username']; ?>
                     <img src="<?= base_url(); ?>asset/img/<?= $user['image']; ?>" class=" img-circle elevation-2 img-fluid" alt="Foto Profile" width="30" height="30">
                 </a>
             </li>
@@ -37,14 +26,14 @@
     <!-- /.navbar -->
 
     <!-- Main Sidebar Container -->
-    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-color: #CE3232;">
         <!-- Brand Logo -->
         <!-- Sidebar -->
         <div class="sidebar">
             <!-- Sidebar user panel (optional) -->
             <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                 <div class="info">
-                    <a href="#" class="d-block">Selamat Datang <?= $user['name']; ?></a>
+                    <a href="#" class="d-block">Selamat Datang <?= $user['username']; ?></a>
                 </div>
             </div>
 
@@ -55,52 +44,27 @@
                     with font-awesome or any other icon font library -->
                     <li class="nav-item">
                         <a href="<?= base_url(); ?>Home/index" class="nav-link">
-                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <i class="nav-icon fas fa-home"></i>
                             <p>
-                                Dashboard
+                                Home
                             </p>
                         </a>
                     </li>
-                    <li class="nav-item has-treeview">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-copy"></i>
+                    <li class="nav-item">
+                        <a href="<?= base_url(); ?>User/userpembeli" class="nav-link">
+                            <i class="nav-icon fas fa-user-circle"></i>
                             <p>
-                                Request Status Kelas
-                                <i class="fas fa-angle-left right"></i>
+                                Profile
                             </p>
                         </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="<?= base_url(); ?>Admin/ReqRPL" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Rekayasa Perangkat Lunak</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="<?= base_url(); ?>Admin/ReqTABOG" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Tata Boga</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="<?= base_url(); ?>Admin/ReqTABUS" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Tata Busana</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="<?= base_url(); ?>Admin/Hotel" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Perhotelan</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="<?= base_url(); ?>Admin/UPW" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Usaha Perjalanan Wisata</p>
-                                </a>
-                            </li>
-                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="<?= base_url(); ?>User/produkpenjual" class="nav-link">
+                            <i class="nav-icon fas fa-hamburger"></i>
+                            <p>
+                                Product
+                            </p>
+                        </a>
                     </li>
                     <li class="nav-item">
                         <a href="<?= base_url(); ?>Auth/logout" class="nav-link">
@@ -122,30 +86,30 @@
         <!-- Content Header (Page header) -->
         <div class="content-header">
             <div class="container-fluid">
-                <div class="row mb-2">
+                <div class="row mb-3 mt-3">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark">Dashboard Admin</h1>
+                        <h1 class="m-0 text-dark">Dashboard User Pembeli</h1>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
-            </div><!-- /.container-fluid -->
-        </div>
-        <!-- /.content-header -->
-
-        <!-- Main content -->
-        <section class="content">
-            <div class="container-fluid">
                 <div class="row">
+                    <button type="button" class="btn btn-primary mt-3 mb-3 ml-2" data-toggle="modal" data-target="#exampleModal">
+                        Jual
+                    </button>
                     <div class="col-12">
                         <div class="card">
                             <!-- /.card-header -->
                             <div class="card-body">
-                                <table id="mytable" class="table table-bordered table-striped">
+                                <table id="mytable" class="table table-bordered  responsive-table table-striped ">
                                     <thead>
                                         <tr>
                                             <th>No</th>
                                             <th>ID</th>
                                             <th>Status Kelas</th>
                                             <th>Request Kelas</th>
+                                            <th>Jurusan</th>
+                                            <th>Jurusan</th>
+                                            <th>Jurusan</th>
+                                            <th>Jurusan</th>
                                             <th>Jurusan</th>
                                         </tr>
                                     </thead>
@@ -157,6 +121,10 @@
                                             </td>
                                             <td>Win 95+</td>
                                             <td> 4</td>
+                                            <td>X</td>
+                                            <td>X</td>
+                                            <td>X</td>
+                                            <td>X</td>
                                             <td>X</td>
                                         </tr>
                                         <tr>
@@ -186,15 +154,31 @@
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
-        </section>
+        </div>
+        <!-- /.content-header -->
         <!-- /.content -->
     </div>
+
+    <!-- Button trigger modal -->
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Jual</h5>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- /.content-wrapper -->
-    <footer class="main-footer">
-        <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong>
-        All rights reserved.
-        <div class="float-right d-none d-sm-inline-block">
-            <b>Version</b> 3.0.5
+    <footer class="py-5 col-lg-12 mt-5" style="background-color: #CE3232;">
+        <div class="container">
+            <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
         </div>
     </footer>
 

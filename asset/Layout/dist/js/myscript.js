@@ -7,11 +7,14 @@ const suclogout = $('.successlogout').data('successlogout');
 const falseoldpass = $('.falseoldpass').data('falseoldpass');
 const notmatchnew = $('.notmatchnew').data('notmatchnew');
 const sukses = $('.sukses').data('sukses');
+const done = $('.done').data('done');
+const activate = $('.activate').data('activate');
+
 
 if(regis){
     Swal.fire({
-        title: "Silahkan Login!!",
-        text: 'Anda Berhasil ' + regis,
+        title: "Anda Berhasil "  + regis,
+        text: 'Mohon Verifikasi Akun Anda Lebih Dulu, Silahkan Cek Email Anda',
         type: 'success',
         icon: 'success'
     });
@@ -67,6 +70,20 @@ if(regis){
     Swal.fire({
         title: 'Password ' + sukses,
         type: 'success',
+        icon: 'success'
+    });
+}else if(done){
+    Swal.fire({
+        title : 'Request ' + done,
+        type: 'success',
+        text: 'Mohon Tunggu Hingga Request Sedang Diproses',
+        icon: 'success'
+    });
+}else if(activate){
+    Swal.fire({
+        title : 'Aktifasi Berhasil',
+        type: 'success',
+        text: activate + 'Telah Diverifikasi dan Diaktifkan! Silahkan Login',
         icon: 'success'
     });
 }

@@ -1,6 +1,7 @@
 <div class="wrapper">
     <div class="successlogin" data-successlogin="<?= $this->session->flashdata('successlogin'); ?>"></div>
     <div class="sukses" data-sukses="<?= $this->session->flashdata('sukses'); ?>"></div>
+    <div class="done" data-done="<?= $this->session->flashdata('done'); ?>"></div>
     <!-- Navbar -->
     <nav class="main-header navbar navbar-expand navbar-white navbar-light">
         <!-- Left navbar links -->

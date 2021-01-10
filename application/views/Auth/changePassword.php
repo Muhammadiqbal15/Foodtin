@@ -10,22 +10,12 @@
     <div class="activate" data-activate="<?= $this->session->flashdata('activate'); ?>"></div>
     <div class="card">
         <div class="card-body login-card-body">
-            <p class="login-box-msg">Masuk</p>
+            <p class="login-box-msg">Ubah Password Mu Untuk</p>
+            <p><?= $this->session->userdata('reset_email'); ?></p>
             <?= $this->session->flashdata('eroremail'); ?>
-            <form action="<?= base_url('Auth/index'); ?>" method="post">
+            <form action="<?= base_url('Auth/changePassword'); ?>" method="post">
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Username" name="username">
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <span class="fas fa-user"></span>
-                        </div>
-                    </div>
-                </div>
-                <small class="text-danger">
-                    <?= form_error('username'); ?>
-                </small>
-                <div class="input-group mb-3">
-                    <input type="password" class="form-control" placeholder="Password" name="pass">
+                    <input type="password" class="form-control" placeholder="New Password" name="pass1">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-lock"></span>
@@ -33,24 +23,26 @@
                     </div>
                 </div>
                 <small class="text-danger">
-                    <?= form_error('pass'); ?>
+                    <?= form_error('pass1'); ?>
+                </small>
+                <div class="input-group mb-3">
+                    <input type="password" class="form-control" placeholder="Confirm New Password" name="pass2">
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-lock"></span>
+                        </div>
+                    </div>
+                </div>
+                <small class="text-danger">
+                    <?= form_error('pass2'); ?>
                 </small>
                 <div class="row">
                     <!-- /.col -->
                     <div class="col-12">
-                        <button type="submit" class="btn btn-danger btn-block">Masuk</button>
+                        <button type="submit" class="btn btn-danger btn-block">Ubah Password</button>
                     </div>
                 </div>
             </form>
-
-            <div class="mt-3">
-                <p class="mb-1">
-                    <a href="<?= base_url('Auth/forgotPassword'); ?>">Lupa Password?</a>
-                </p>
-                <p class="mb-0">
-                    <a href="<?= base_url('Auth/regis'); ?>" class="text-center">Buat Akun?</a>
-                </p>
-            </div>
         </div>
         <!-- /.login-card-body -->
     </div>

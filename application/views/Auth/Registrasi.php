@@ -11,7 +11,7 @@
                 <div class="form-row">
                     <div class="col">
                         <div class="input-group mb-2">
-                            <input type="text" class="form-control" placeholder="Nama Kantin/Username" name="username" value="<?= set_value('username') ?>">
+                            <input type="text" class="form-control" placeholder="Username" name="username" value="<?= set_value('username') ?>">
                             <div class="input-group-append">
                                 <div class="input-group-text">
                                     <span class="fas fa-user"></span>
@@ -100,6 +100,7 @@
                         <option value="<?= $row->id_jurusan; ?>">
                             <?= $row->jurusan; ?>
                         </option>
+
                     <?php endforeach; ?>
                 </select>
                 <label for="kelas">Kelas</label>
@@ -119,6 +120,9 @@
                     <!-- /.col -->
                 </div>
             </form>
+            <p class="mb-1 mt-3">
+                <a href="<?= base_url('Auth/forgotPassword'); ?>">Lupa Password?</a>
+            </p>
             <a href="<?= base_url('Auth/index') ?>" class="text-center mt-2">Sudah Punya Akun?</a>
         </div>
         <!-- /.form-box -->
@@ -141,6 +145,7 @@
                     var html = '';
                     for (let index = 0; index < array.length; index++) {
                         html += "<option value='" + array[index].id_kelas + "'>" + array[index].kelas + "</option>"
+
                     }
                     $('#kelas').html(html);
                 }
