@@ -344,9 +344,162 @@ class User extends CI_Controller
         $data['title'] = "Produk";
 
         $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
+        $data['product'] = $this->Foodtin_model->getallproduct();
         $data['jurusan'] = $this->Foodtin_model->getUserdata();
         $this->load->view('TemplateAdmin/HeaderAdmin', $data);
         $this->load->view('User/Produkpenjual', $data);
         $this->load->view('TemplateAdmin/FooterAdmin');
+    }
+
+    public function addproduct()
+    {
+        $nama = $this->input->post('nama', true);
+        $harga = $this->input->post('harga', true);
+        $jumlah = $this->input->post('jumlah', true);
+        $jenis = $this->input->post('jenis', true);
+        $status = $this->input->post('status', true);
+        $user = $this->input->post('iduser', true);
+
+        $foto = $_FILES['foto'];
+
+        if ($foto) {
+
+            $config['upload_path'] = './asset/img/';
+            $config['allowed_types'] = 'gif|jpg|png|jpeg|bmp';
+
+            $this->load->library('upload', $config);
+
+            if ($this->upload->do_upload('foto')) {
+                $foto = $this->upload->data();
+
+                //Compress Image
+                $config['image_library'] = 'gd2';
+                $config['source_image'] = './assets/images/' . $foto['file_name'];
+                $config['create_thumb'] = FALSE;
+                $config['maintain_ratio'] = FALSE;
+                $config['quality'] = '50%';
+                $config['width'] = 600;
+                $config['height'] = 400;
+                $config['new_image'] = './assets/images/' . $foto['file_name'];
+                $this->load->library('image_lib', $config);
+                $this->image_lib->resize();
+
+                $gambar = $foto['file_name'];
+            } else {
+                echo $this->upload->display_errors();
+            }
+        }
+
+        $data = [
+            'nama' => $nama,
+            'harga' => $harga,
+            'foto' => $gambar,
+            'jumlah' => $jumlah,
+            'jenis' => $jenis,
+            'status' => $status,
+            'user' => $user
+
+        ];
+
+        $this->db->insert('product', $data);
+        $this->session->set_flashdata('add', 'Ditambahkan');
+        redirect('User/produkpenjual');
+    }
+
+    public function editproduct($id)
+    {
+        $data['title'] = "Ubah Produk";
+        $id_product = $id;
+        $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
+        $data['product'] = $this->Foodtin_model->getallproductbyid($id_product);
+        $data['jenis'] = ['Makanan Berat', 'Makanan Ringan', 'Minuman'];
+        $data['status'] = ['Ready', 'Pre Order (PO)'];
+        $this->load->view('TemplateAdmin/HeaderAdmin', $data);
+        $this->load->view('User/Editprodukpenjual', $data);
+        $this->load->view('TemplateAdmin/FooterAdmin');
+    }
+
+    public function editpicproduct($id)
+    {
+        $data['title'] = "Ubah Foto Produk";
+        $id_product = $id;
+        $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
+        $data['product'] = $this->Foodtin_model->getallproductbyid($id_product);
+        $this->load->view('TemplateAdmin/HeaderAdmin', $data);
+        $this->load->view('User/Editfotoprodukpenjual', $data);
+        $this->load->view('TemplateAdmin/FooterAdmin');
+    }
+
+    public function updateproduct()
+    {
+        $nama = $this->input->post('nama', true);
+        $harga = $this->input->post('harga', true);
+        $jumlah = $this->input->post('jumlah', true);
+        $jenis = $this->input->post('jenis', true);
+        $status = $this->input->post('status', true);
+        $id = $this->input->post('id', true);
+
+        $data = [
+            'nama' => $nama,
+            'harga' => $harga,
+            'jumlah' => $jumlah,
+            'jenis' => $jenis,
+            'status' => $status
+        ];
+        $kondisi = $this->db->where('id_product', $id);
+        $this->Foodtin_model->updateproduct($data, $kondisi);
+        $this->session->set_flashdata('update', 'Diubah');
+        redirect('User/produkpenjual');
+    }
+
+    public function updatefotoproduct()
+    {
+        $foto = $_FILES['foto'];
+
+        if ($foto) {
+
+            $config['upload_path'] = './asset/img/';
+            $config['allowed_types'] = 'gif|jpg|png|jpeg|bmp';
+
+            $this->load->library('upload', $config);
+
+            if ($this->upload->do_upload('foto')) {
+                $foto = $this->upload->data();
+
+                //Compress Image
+                $config['image_library'] = 'gd2';
+                $config['source_image'] = './assets/images/' . $foto['file_name'];
+                $config['create_thumb'] = FALSE;
+                $config['maintain_ratio'] = FALSE;
+                $config['quality'] = '50%';
+                $config['width'] = 600;
+                $config['height'] = 400;
+                $config['new_image'] = './assets/images/' . $foto['file_name'];
+                $this->load->library('image_lib', $config);
+                $this->image_lib->resize();
+
+                $gambar = $foto['file_name'];
+            } else {
+                echo $this->upload->display_errors();
+            }
+        }
+
+        $id = $this->input->post('id', true);
+
+
+        $this->db->set('foto', $gambar);
+        $this->db->where('id_product', $id);
+        $this->db->update('product');
+
+        $this->session->set_flashdata('image', 'Diubah');
+        redirect('User/produkpenjual');
+    }
+
+    public function deleteproduct($id)
+    {
+        $this->db->where('id_product', $id);
+        $this->db->delete('product');
+        $this->session->set_flashdata('delete', 'Dihapus');
+        redirect('User/produkpenjual');
     }
 }

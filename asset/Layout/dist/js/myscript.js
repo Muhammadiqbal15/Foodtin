@@ -9,7 +9,10 @@ const notmatchnew = $('.notmatchnew').data('notmatchnew');
 const sukses = $('.sukses').data('sukses');
 const done = $('.done').data('done');
 const activate = $('.activate').data('activate');
-
+const add = $('.add').data('add');
+const image = $('.image').data('image');
+const update = $('.update').data('update');
+const del = $('.delete').data('delete');
 
 if(regis){
     Swal.fire({
@@ -86,4 +89,54 @@ if(regis){
         text: activate + 'Telah Diverifikasi dan Diaktifkan! Silahkan Login',
         icon: 'success'
     });
+}else if(add){
+    Swal.fire({
+        title : 'Berhasil',
+        type: 'success',
+        text: 'Produk Berhasil ' + add,
+        icon: 'success'
+    });
+}else if(image){
+    Swal.fire({
+        title : 'Berhasil',
+        type: 'success',
+        text: 'Foto Produk Berhasil ' + image,
+        icon: 'success'
+    });
+}else if(update){
+    Swal.fire({
+        title : 'Berhasil',
+        type: 'success',
+        text: 'Produk Berhasil ' + update,
+        icon: 'success'
+    });
+}else if(del){
+    Swal.fire({
+        title : 'Berhasil',
+        type : 'success',
+        text : 'Produk Berhasil ' + del,
+        icon : 'success'
+    });
 }
+
+
+//tombol hapus product
+
+$('.tombol-hapus').on('click',function(e){
+    e.preventDefault();
+    const href = $(this).attr('href');
+
+    Swal.fire({
+        title: 'Apakah Anda Yakin?',
+        text: "Data Product Akan Dihapus!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Ya, Hapus Product'
+    }).then((result) => {
+        if (result.value) {
+            document.location.href = href;
+        }
+    })
+});

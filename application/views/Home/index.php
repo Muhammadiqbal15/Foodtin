@@ -43,18 +43,28 @@
                 <?php if ($role > 1) : ?>
                     <?php if ($tipe != "Penjual") : ?>
                         <ul class="navbar-nav ml-auto">
-                            <li class="nav-item active">
-                                <a class="nav-link" href="<?= base_url() ?>User/Userpembeli"><?= $user['name']; ?>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <?= $user['name']; ?>
                                     <img src="<?= base_url(); ?>/asset/img/<?= $user['image']; ?>" alt="" width="30" height="30" class="rounded-circle ml-1 img-fluid "><span class="sr-only">(current)</span>
                                 </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" href="<?= base_url() ?>User/Userpembeli"><i class="fas fa-user"></i> <?= $user['name']; ?></a>
+                                    <a class="dropdown-item" href="<?= base_url(); ?>Auth/logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                                </div>
                             </li>
                         </ul>
                     <?php else : ?>
                         <ul class="navbar-nav ml-auto">
-                            <li class="nav-item active">
-                                <a class="nav-link" href="<?= base_url() ?>User/Userpenjual"><?= $user['name']; ?>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <?= $user['name']; ?>
                                     <img src="<?= base_url(); ?>/asset/img/<?= $user['image']; ?>" alt="" width="30" height="30" class="rounded-circle ml-1 img-fluid "><span class="sr-only">(current)</span>
                                 </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" href="<?= base_url() ?>User/Userpenjual"><i class="fas fa-user"></i> <?= $user['name']; ?></a>
+                                    <a class="dropdown-item" href="<?= base_url(); ?>Auth/logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                                </div>
                             </li>
                         </ul>
                     <?php endif; ?>
@@ -94,123 +104,29 @@
 
 <div class="container-fluid mt-5">
     <div class="row">
-        <div class="col-lg-6 mt-3">
-            <div class="card shadow">
-                <div class="row no-gutters">
-                    <div class="col-md-4">
-                        <img src="<?= base_url(); ?>asset/img/1.jpg" class="card-img" alt="...">
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h5 class="card-title">Kwetiau Goreng</h5>
-                            <p class="card-text">Rp15.000</p>
-                            <button class="btn btn-danger"><i class="fas fa-cart-plus"></i> Cart</button>
-                            <button class="btn btn-success"><i class="fas fa-eye"></i> Detail</button>
-                            <button class="btn btn-dark"><i class="fas fa-store"></i> Kantin</button>
+        <?php foreach ($product as $pr) : ?>
+            <div class="col-lg-6 mt-3">
+                <div class="card shadow">
+                    <div class="row no-gutters">
+                        <div class="col-md-4">
+                            <img src="<?= base_url(); ?>asset/img/<?= $pr['foto']; ?>" class="card-img" alt="...">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title"><?= $pr['nama']; ?></h5>
+                                <p class="card-text"><?= $pr['harga']; ?></p>
+                                <button class="btn btn-danger"><i class="fas fa-cart-plus"></i> Cart</button>
+                                <button class="btn btn-success"><i class="fas fa-eye"></i> Detail</button>
+                                <button class="btn btn-dark"><i class="fas fa-store"></i> Kantin</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-lg-6 mt-3">
-            <div class="card shadow">
-                <div class="row no-gutters">
-                    <div class="col-md-4">
-                        <img src="<?= base_url(); ?>asset/img/2.jpg" class="card-img" alt="...">
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h5 class="card-title">Nasi Goreng</h5>
-                            <p class="card-text">Rp10.000</p>
-                            <button class="btn btn-danger"><i class="fas fa-cart-plus"></i> Cart</button>
-                            <button class="btn btn-success"><i class="fas fa-eye"></i> Detail</button>
-                            <button class="btn btn-dark"><i class="fas fa-store"></i> Kantin</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row mt-3">
-        <div class="col-lg-6 mt-3">
-            <div class="card shadow">
-                <div class="row no-gutters">
-                    <div class="col-md-4">
-                        <img src="<?= base_url(); ?>asset/img/3.jpg" class="card-img " alt="...">
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h5 class="card-title">Mie Goreng</h5>
-                            <p class="card-text">Rp10.000</p>
-                            <button class="btn btn-danger"><i class="fas fa-cart-plus"></i> Cart</button>
-                            <button class="btn btn-success"><i class="fas fa-eye"></i> Detail</button>
-                            <button class="btn btn-dark"><i class="fas fa-store"></i> Kantin</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-6 mt-3">
-            <div class="card shadow">
-                <div class="row no-gutters">
-                    <div class="col-md-4">
-                        <img src="<?= base_url(); ?>asset/img/4.jpg" class="card-img " alt="...">
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h5 class="card-title">Mie Ayam</h5>
-                            <p class="card-text">Rp15.000</p>
-                            <button class="btn btn-danger"><i class="fas fa-cart-plus"></i> Cart</button>
-                            <button class="btn btn-success"><i class="fas fa-eye"></i> Detail</button>
-                            <button class="btn btn-dark"><i class="fas fa-store"></i> Kantin</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row mt-3">
-        <div class="col-lg-6 mt-3">
-            <div class="card shadow">
-                <div class="row no-gutters">
-                    <div class="col-md-4">
-                        <img src="<?= base_url(); ?>asset/img/5.jpg" class="card-img" alt="...">
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h5 class="card-title">Soto Ayam</h5>
-                            <p class="card-text">Rp20.000</p>
-                            <button class="btn btn-danger"><i class="fas fa-cart-plus"></i> Cart</button>
-                            <button class="btn btn-success"><i class="fas fa-eye"></i> Detail</button>
-                            <button class="btn btn-dark"><i class="fas fa-store"></i> Kantin</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-6 mt-3">
-            <div class="card shadow">
-                <div class="row no-gutters">
-                    <div class="col-md-4">
-                        <img src="<?= base_url(); ?>asset/img/6.jpg" class="card-img" alt="...">
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h5 class="card-title">Ayam Geprek</h5>
-                            <p class="card-text">Rp15.000</p>
-                            <button class="btn btn-danger"><i class="fas fa-cart-plus"></i> Cart</button>
-                            <button class="btn btn-success"><i class="fas fa-eye"></i> Detail</button>
-                            <button class="btn btn-dark"><i class="fas fa-store"></i> Kantin</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <?php endforeach; ?>
     </div>
 </div>
-</div>
+
 
 <nav aria-label="..." class="mt-5 ml-5">
     <ul class="pagination">

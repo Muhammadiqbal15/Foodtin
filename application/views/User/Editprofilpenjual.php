@@ -59,7 +59,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="<?= base_url(); ?>User/userpembeli" class="nav-link">
+                        <a href="<?= base_url(); ?>User/userpenjual" class="nav-link">
                             <i class="nav-icon fas fa-user-circle"></i>
                             <p>
                                 Profile
