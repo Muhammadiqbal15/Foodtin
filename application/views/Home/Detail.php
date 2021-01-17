@@ -14,15 +14,14 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="<?= base_url(); ?>Home/aboutdev">AboutDev</a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Product
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="<?= base_url(); ?>Home/Minuman">Minuman</a>
-                        <a class="dropdown-item" href="<?= base_url(); ?>Home/Makber">MakananBerat</a>
-                        <a class="dropdown-item" href="<?= base_url(); ?>Home/Makring">MakananRingan</a>
-                    </div>
+                <li class="nav-item active">
+                    <a class="nav-link" href="<?= base_url(); ?>Home/Makring">MakananRingan</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="<?= base_url(); ?>Home/Makber">MakananBerat</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="<?= base_url(); ?>Home/Minuman">Minuman</a>
                 </li>
             </ul>
 
@@ -80,32 +79,10 @@
     </div>
 </nav>
 
-
-<div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
-    <div class="carousel-inner">
-        <div class="carousel-item active">
-            <img src="<?= base_url(); ?>asset/img/slider-image1.jpg" class="d-block w-100" alt="...">
-        </div>
-        <div class="carousel-item">
-            <img src="<?= base_url(); ?>asset/img/testimonial-bg.jpg" class="d-block w-100" alt="...">
-        </div>
-        <div class="carousel-item">
-            <img src="<?= base_url(); ?>asset/img/slider-image3.jpg" class="d-block w-100" alt="...">
-        </div>
-    </div>
-</div>
-
-<form class="form-inline mt-5 justify-content-center" method="POST">
-    <div class="input-group input-group-lg col-lg-8 mt-5">
-        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" type="search" placeholder="Search" aria-label="Search" name="keyword" autocomplete="off">
-        <button class="btn btn-outline-danger btn-sm my-2 my-sm-0 mt-1 col-lg-2" type=" submit"><i class="fas fa-search"></i></button>
-    </div>
-</form>
-
 <div class="container-fluid mt-5">
     <div class="row">
         <?php foreach ($product as $pr) : ?>
-            <div class="col-lg-6 mt-3">
+            <div class="col-lg-12 mt-5">
                 <div class="card shadow">
                     <div class="row no-gutters">
                         <div class="col-md-4">
@@ -113,30 +90,31 @@
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
-                                <h5 class="card-title"><?= $pr['nama']; ?></h5>
-                                <p class="card-text"><?= $pr['harga']; ?></p>
-                                <?php if (!$this->session->userdata('username')) : ?>
-                                    <a href="" class="btn btn-danger"><i class="fas fa-cart-plus"></i> Cart</a>
-                                    <a href="<?= base_url(); ?>Home/detail/<?= $pr['id_product'] ?>" class="btn btn-success"><i class="fas fa-eye"></i> Detail</a>
-                                    <a href="<?= base_url(); ?>Home/kantin/<?= $pr['user'] ?>" class="btn btn-info"><i class="fas fa-store"></i> Kantin</a>
-                                <?php else : ?>
-                                    <?php
-                                    $role = $this->session->userdata('role_id');
-                                    $tipe = $this->session->userdata('tipe');
-                                    ?>
-                                    <?php if ($role > 1) : ?>
-                                        <?php if ($tipe != "Penjual") : ?>
-                                            <a href="" class="btn btn-danger"><i class="fas fa-cart-plus"></i> Cart</a>
-                                            <a href="<?= base_url(); ?>Home/detail/<?= $pr['id_product'] ?>" class="btn btn-success"><i class="fas fa-eye"></i> Detail</a>
-                                            <a href="<?= base_url(); ?>Home/kantin/<?= $pr['user'] ?>" class="btn btn-info"><i class="fas fa-store"></i> Kantin</a>
-                                        <?php else : ?>
-                                            <a href="<?= base_url(); ?>Home/detail/<?= $pr['id_product'] ?>" class="btn btn-success"><i class="fas fa-eye"></i> Detail</a>
-                                            <a href="<?= base_url(); ?>Home/kantin/<?= $pr['user'] ?>" class="btn btn-info"><i class="fas fa-store"></i> Kantin</a>
-                                        <?php endif; ?>
-                                    <?php else : ?>
+                                <h2 class="card-title"><?= $pr['nama']; ?></h2>
+                                <h4 class="card-text"><?= $pr['harga']; ?></h4>
+                                <br>
+                                <h5 class="card-text">Stok : <?= $pr['jumlah']; ?></h5>
+                                <h5 class="card-text">Jenis : <?= $pr['jenis']; ?></h5>
+                                <h5 class="card-text">status : <?= $pr['status']; ?></h5>
+                                <br>
+                                <?php
+                                $role = $this->session->userdata('role_id');
+                                $tipe = $this->session->userdata('tipe');
+                                ?>
+                                <?php if ($role > 1) : ?>
+                                    <?php if ($tipe != "Penjual") : ?>
+                                        <a href="" class="btn btn-danger"><i class="fas fa-cart-plus"></i> Cart</a>
                                         <a href="<?= base_url(); ?>Home/detail/<?= $pr['id_product'] ?>" class="btn btn-success"><i class="fas fa-eye"></i> Detail</a>
                                         <a href="<?= base_url(); ?>Home/kantin/<?= $pr['user'] ?>" class="btn btn-info"><i class="fas fa-store"></i> Kantin</a>
+                                    <?php else : ?>
+                                        <a href="<?= base_url(); ?>Home/kantin/<?= $pr['user'] ?>" class="btn btn-info"><i class="fas fa-store"></i> Kantin</a>
                                     <?php endif; ?>
+                                <?php else : ?>
+                                    <ul class="navbar-nav ml-auto">
+                                        <li class="nav-item active">
+                                            <a class="nav-link" href="<?= base_url() ?>Admin/index"><?= $user['name']; ?><span class="sr-only">(current)</span></a>
+                                        </li>
+                                    </ul>
                                 <?php endif; ?>
                             </div>
                         </div>
@@ -146,32 +124,3 @@
         <?php endforeach; ?>
     </div>
 </div>
-
-
-<nav aria-label="..." class="mt-5 ml-5">
-    <ul class="pagination">
-        <li class="page-item disabled">
-            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-        </li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item active" aria-current="page">
-            <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item">
-            <a class="page-link" href="#">Next</a>
-        </li>
-    </ul>
-</nav>
-
-<footer class="py-5 col-lg-12 mt-5" style="background-color: #CE3232;">
-    <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
-    </div>
-</footer>
-
-<script type="text/javascript">
-    $('.carousel').carousel({
-        interval: 1000
-    });
-</script>

@@ -56,7 +56,7 @@ class User extends CI_Controller
         $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
         $data['jurusan'] = $this->Foodtin_model->getUserdata();
 
-        $this->form_validation->set_rules('username', 'Username', 'required|trim');
+
         $this->form_validation->set_rules('name', 'Nama', 'required|trim', [
             'required' => 'Nama atau Nama Kantin Harus Diisi'
         ]);
@@ -106,7 +106,7 @@ class User extends CI_Controller
 
             $id = $this->input->post('id');
 
-            $this->db->set('username', $username);
+
             $this->db->set('name', $name);
             $this->db->set('nohp', $nohp);
             $this->db->set('image', $newfoto);
@@ -123,7 +123,7 @@ class User extends CI_Controller
         $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
         $data['jurusan'] = $this->Foodtin_model->getUserdata();
 
-        $this->form_validation->set_rules('username', 'Username', 'required|trim');
+
         $this->form_validation->set_rules('name', 'Nama', 'required|trim', [
             'required' => 'Nama atau Nama Kantin Harus Diisi'
         ]);
@@ -173,7 +173,6 @@ class User extends CI_Controller
 
             $id = $this->input->post('id');
 
-            $this->db->set('username', $username);
             $this->db->set('name', $name);
             $this->db->set('nohp', $nohp);
             $this->db->set('image', $newfoto);
@@ -359,6 +358,8 @@ class User extends CI_Controller
         $jenis = $this->input->post('jenis', true);
         $status = $this->input->post('status', true);
         $user = $this->input->post('iduser', true);
+        $jurusan =  $this->input->post('jurusan', true);
+        $kelas = $this->input->post('kelas', true);
 
         $foto = $_FILES['foto'];
 
@@ -397,7 +398,9 @@ class User extends CI_Controller
             'jumlah' => $jumlah,
             'jenis' => $jenis,
             'status' => $status,
-            'user' => $user
+            'user' => $user,
+            'jurusan' => $jurusan,
+            'kelas' => $kelas
 
         ];
 

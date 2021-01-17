@@ -14,15 +14,14 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="<?= base_url(); ?>Home/aboutdev">AboutDev</a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Product
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="<?= base_url(); ?>Home/Minuman">Minuman</a>
-                        <a class="dropdown-item" href="<?= base_url(); ?>Home/Makber">MakananBerat</a>
-                        <a class="dropdown-item" href="<?= base_url(); ?>Home/Makring">MakananRingan</a>
-                    </div>
+                <li class="nav-item active">
+                    <a class="nav-link" href="<?= base_url(); ?>Home/Makring">MakananRingan</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="<?= base_url(); ?>Home/Makber">MakananBerat</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="<?= base_url(); ?>Home/Minuman">Minuman</a>
                 </li>
             </ul>
 
@@ -80,17 +79,24 @@
     </div>
 </nav>
 
-
-<div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
-    <div class="carousel-inner">
-        <div class="carousel-item active">
-            <img src="<?= base_url(); ?>asset/img/slider-image1.jpg" class="d-block w-100" alt="...">
-        </div>
-        <div class="carousel-item">
-            <img src="<?= base_url(); ?>asset/img/testimonial-bg.jpg" class="d-block w-100" alt="...">
-        </div>
-        <div class="carousel-item">
-            <img src="<?= base_url(); ?>asset/img/slider-image3.jpg" class="d-block w-100" alt="...">
+<div class="container-fluid mt-5">
+    <div class="row">
+        <div class="col-lg-12 mt-5">
+            <div class="card shadow">
+                <div class="row no-gutters">
+                    <div class="col-md-4">
+                        <img src="<?= base_url(); ?>asset/img/<?= $kantin['image']; ?>" class="card-img " alt="...">
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card-body">
+                            <h2 class="card-title">Kantin : <?= $kantin['name']; ?></h2>
+                            <br><br>
+                            <h4 class="card-text">Kelas : <?= $jurusan['kelas']; ?></h4>
+                            <h4 class="card-text">Jurusan : <?= $jurusan['jurusan']; ?></h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -146,32 +152,3 @@
         <?php endforeach; ?>
     </div>
 </div>
-
-
-<nav aria-label="..." class="mt-5 ml-5">
-    <ul class="pagination">
-        <li class="page-item disabled">
-            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-        </li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item active" aria-current="page">
-            <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item">
-            <a class="page-link" href="#">Next</a>
-        </li>
-    </ul>
-</nav>
-
-<footer class="py-5 col-lg-12 mt-5" style="background-color: #CE3232;">
-    <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
-    </div>
-</footer>
-
-<script type="text/javascript">
-    $('.carousel').carousel({
-        interval: 1000
-    });
-</script>

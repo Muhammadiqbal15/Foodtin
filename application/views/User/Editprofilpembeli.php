@@ -133,11 +133,8 @@
                 <?php endforeach; ?>
                 <div class="form-group">
                   <label for="username">Username</label>
-                  <input type="text" class="form-control" id="username" name="username" value="<?= $user['username']; ?>">
+                  <input type="text" class="form-control" id="username" name="username" value="<?= $user['username']; ?>" readonly>
                 </div>
-                <small class="text-danger">
-                  <?= form_error('username'); ?>
-                </small>
                 <div class="form-group">
                   <label for="nama">Nama</label>
                   <input type="text" class="form-control" id="nama" name="name" value="<?= $user['name']; ?>">

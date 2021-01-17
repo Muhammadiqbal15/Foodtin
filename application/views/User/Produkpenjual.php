@@ -97,7 +97,7 @@
                 </div><!-- /.row -->
                 <div class="row">
                     <button type="button" class="btn btn-primary mt-3 mb-3 ml-2" data-toggle="modal" data-target="#exampleModal">
-                        Jual
+                        <i class="fas fa-dollar-sign"></i> Jual
                     </button>
                     <div class="col-12">
                         <div class="card">
@@ -129,9 +129,9 @@
                                                 <td><?= $pr['jenis']; ?></td>
                                                 <td><?= $pr['status']; ?></td>
                                                 <td>
-                                                    <a href="<?= base_url(); ?>User/editproduct/<?= $pr['id_product']; ?>" class="btn btn-sm btn-success">Edit</a>
-                                                    <a href="<?= base_url(); ?>User/deleteproduct/<?= $pr['id_product']; ?>" class="btn btn-sm btn-danger tombol-hapus">Hapus</a>
-                                                    <a href="<?= base_url(); ?>User/editpicproduct/<?= $pr['id_product']; ?>" class="btn btn-sm btn-warning">Ubah Foto</a>
+                                                    <a href="<?= base_url(); ?>User/editproduct/<?= $pr['id_product']; ?>" class="btn btn-sm btn-success"><i class="fas fa-edit"></i> Edit</a>
+                                                    <a href="<?= base_url(); ?>User/deleteproduct/<?= $pr['id_product']; ?>" class="btn btn-sm btn-danger tombol-hapus"><i class="fas fa-trash"></i> Hapus</a>
+                                                    <a href="<?= base_url(); ?>User/editpicproduct/<?= $pr['id_product']; ?>" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i> Ubah Foto</a>
                                                 </td>
                                             </tr>
                                             <?php $i++;  ?>
@@ -163,6 +163,8 @@
                     <?= form_open_multipart('User/addproduct'); ?>
                     <div class="form-group">
                         <input type="hidden" class="form-control" id="iduser" name="iduser" value="<?= $user['id']; ?>">
+                        <input type="hidden" class="form-control" id="iduser" name="jurusan" value="<?= $user['jurusan']; ?>">
+                        <input type="hidden" class="form-control" id="iduser" name="kelas" value="<?= $user['kelas']; ?>">
                     </div>
                     <div class="form-group">
                         <label for="nama">Nama</label>
@@ -196,7 +198,7 @@
                             <option>Pre Order (PO)</option>
                         </select>
                     </div>
-                    <button class="btn btn-primary">Tambah</button>
+                    <button class="btn btn-primary"><i class="fas fa-plus"></i> Tambah</button>
                     </form>
                 </div>
             </div>

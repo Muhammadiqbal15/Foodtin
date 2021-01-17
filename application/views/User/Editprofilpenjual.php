@@ -133,11 +133,8 @@
                                 <?php endforeach; ?>
                                 <div class="form-group">
                                     <label for="username">Username</label>
-                                    <input type="text" class="form-control" id="username" name="username" value="<?= $user['username']; ?>">
+                                    <input type="text" class="form-control" id="username" name="username" value="<?= $user['username']; ?>" readonly>
                                 </div>
-                                <small class="text-danger">
-                                    <?= form_error('username'); ?>
-                                </small>
                                 <div class="form-group">
                                     <label for="nama">Nama</label>
                                     <input type="text" class="form-control" id="nama" name="name" value="<?= $user['name']; ?>">
@@ -165,6 +162,7 @@
                                                 <div class="form-group">
                                                     <div class="input-group mt-5">
                                                         <input type="file" class="form-control-file" id="foto" name="foto">
+                                                        <small class="text-danger">Mohon Masukkan Kembali Gambar/Foto Jika Melakukan Update Profil</small>
                                                     </div>
                                                 </div>
                                             </div>

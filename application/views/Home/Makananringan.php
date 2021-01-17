@@ -95,9 +95,26 @@
                             <div class="card-body">
                                 <h5 class="card-title"><?= $pr['nama']; ?></h5>
                                 <p class="card-text"><?= $pr['harga']; ?></p>
-                                <button class="btn btn-danger"><i class="fas fa-cart-plus"></i> Cart</button>
-                                <button class="btn btn-success"><i class="fas fa-eye"></i> Detail</button>
-                                <button class="btn btn-dark"><i class="fas fa-store"></i> Kantin</button>
+                                <?php
+                                $role = $this->session->userdata('role_id');
+                                $tipe = $this->session->userdata('tipe');
+                                ?>
+                                <?php if ($role > 1) : ?>
+                                    <?php if ($tipe != "Penjual") : ?>
+                                        <a href="" class="btn btn-danger"><i class="fas fa-cart-plus"></i> Cart</a>
+                                        <a href="<?= base_url(); ?>Home/detail/<?= $pr['id_product'] ?>" class="btn btn-success"><i class="fas fa-eye"></i> Detail</a>
+                                        <a href="<?= base_url(); ?>Home/kantin/<?= $pr['user'] ?>" class="btn btn-info"><i class="fas fa-store"></i> Kantin</a>
+                                    <?php else : ?>
+                                        <a href="<?= base_url(); ?>Home/detail/<?= $pr['id_product'] ?>" class="btn btn-success"><i class="fas fa-eye"></i> Detail</a>
+                                        <a href="<?= base_url(); ?>Home/kantin/<?= $pr['user'] ?>" class="btn btn-info"><i class="fas fa-store"></i> Kantin</a>
+                                    <?php endif; ?>
+                                <?php else : ?>
+                                    <ul class="navbar-nav ml-auto">
+                                        <li class="nav-item active">
+                                            <a class="nav-link" href="<?= base_url() ?>Admin/index"><?= $user['name']; ?><span class="sr-only">(current)</span></a>
+                                        </li>
+                                    </ul>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>

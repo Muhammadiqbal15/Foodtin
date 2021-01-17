@@ -24,8 +24,40 @@ class Foodtin_model extends CI_Model
         $this->db->select('*');
         $this->db->from('product');
         $this->db->where('user', $this->session->userdata('id'));
+        $this->db->order_by('id_product', 'DESC');
         $query = $this->db->get();
         return $query->result_array();
+    }
+
+    public function getproductbyid($id)
+    {
+        $this->db->select('*');
+        $this->db->from('product');
+        $this->db->where('id_product', $id);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function getkantinbyid($id_user)
+    {
+        $this->db->select('*');
+        $this->db->from('product');
+        $this->db->join('user', 'user.id = product.user');
+        $this->db->where('user', $id_user);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function getidentitykantin($id_user)
+    {
+        $this->db->select('*');
+        $this->db->from('product');
+        $this->db->join('user', 'user.id = product.user');
+        $this->db->join('jurusan', 'jurusan.id_jurusan = product.jurusan');
+        $this->db->join('kelas', 'kelas.id_kelas = product.kelas');
+        $this->db->where('user', $id_user);
+        $query = $this->db->get();
+        return $query->row_array();
     }
 
     public function getallproductbyid($id_product)
@@ -34,8 +66,9 @@ class Foodtin_model extends CI_Model
         $this->db->join('user', 'user.id = product.user');
         $this->db->where('id_product', $id_product);
         $query = $this->db->get();
-        return $query->row_array();
+        return $query->result_array();
     }
+
 
     public function makber()
     {
