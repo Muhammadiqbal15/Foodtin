@@ -67,6 +67,14 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a href="<?= base_url(); ?>User/produkpenjual" class="nav-link">
+                            <i class="nav-icon fas fa-hamburger"></i>
+                            <p>
+                                Menu
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a href="<?= base_url(); ?>Auth/logout" class="nav-link">
                             <i class="nav-icon fas fa-th"></i>
                             <p>

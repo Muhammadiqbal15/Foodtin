@@ -94,33 +94,36 @@
                 </div><!-- /.row -->
                 <div class="row">
                     <div class="col-lg-12">
-                        <div class="card mb-3">
-                            <div class="row no-gutters">
-                                <div class="col-md-4">
-                                    <img src="<?= base_url(); ?>asset/img/<?= $product['foto']; ?>" class="card-img" alt="...">
-                                    <label for="" class="mt-3 ml-2"><?= $product['foto']; ?></label>
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="card-body">
-                                        <?= form_open_multipart('User/updatefotoproduct'); ?>
-                                        <div class="form-group">
-                                            <input type="hidden" class="form-control" id="iduser" name="iduser" value="<?= $user['id']; ?>">
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="hidden" class="form-control" id="id" name="id" value="<?= $product['id_product']; ?>">
-                                        </div>
+                        <?php foreach ($product as $pr) : ?>
+                            <div class="card mb-3">
+                                <div class="row no-gutters">
+                                    <div class="col-md-4">
+                                        <img src="<?= base_url(); ?>asset/img/<?= $pr['foto']; ?>" class="card-img" alt="...">
+                                        <label for="" class="mt-3 ml-2"><?= $pr['foto']; ?></label>
+                                    </div>
 
-                                        <div class="form-group">
-                                            <label for="Foto">Foto</label>
-                                            <input type="file" class="form-control-file" id="foto" name="foto">
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            <?= form_open_multipart('User/updatefotoproduct'); ?>
+                                            <div class="form-group">
+                                                <input type="hidden" class="form-control" id="iduser" name="iduser" value="<?= $user['id']; ?>">
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="hidden" class="form-control" id="id" name="id" value="<?= $pr['id_product']; ?>">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="Foto">Foto</label>
+                                                <input type="file" class="form-control-file" id="foto" name="foto">
+                                            </div>
+                                            <a href="<?= base_url(); ?>User/produkpenjual" class="btn btn-success mt-2">Kembali</a>
+                                            <button class="btn  btn-primary mt-2">Ubah</button>
+                                            </form>
                                         </div>
-                                        <a href="<?= base_url(); ?>User/produkpenjual" class="btn btn-success mt-2">Kembali</a>
-                                        <button class="btn  btn-primary mt-2">Ubah</button>
-                                        </form>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        <?php endforeach; ?>
                     </div>
                 </div>
             </div><!-- /.container-fluid -->

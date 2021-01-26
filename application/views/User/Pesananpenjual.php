@@ -1,6 +1,7 @@
 <div class="wrapper">
     <div class="successlogin" data-successlogin="<?= $this->session->flashdata('successlogin'); ?>"></div>
     <div class="sukses" data-sukses="<?= $this->session->flashdata('sukses'); ?>"></div>
+    <div class="done" data-done="<?= $this->session->flashdata('done'); ?>"></div>
     <!-- Navbar -->
     <nav class="main-header navbar navbar-expand navbar-white navbar-light">
         <!-- Left navbar links -->
@@ -66,6 +67,14 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a href="<?= base_url(); ?>User/pesananpenjual" class="nav-link">
+                            <i class="nav-icon fas fa-utensils"></i>
+                            <p>
+                                Pembeli
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a href="<?= base_url(); ?>Auth/logout" class="nav-link">
                             <i class="nav-icon fas fa-th"></i>
                             <p>
@@ -80,49 +89,78 @@
         <!-- /.sidebar -->
     </aside>
 
+    <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
-        <section class="content-header">
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
             <div class="container-fluid">
                 <div class="row mb-3 mt-3">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark">Perbarui Kelas Mu</h1>
+                        <h1 class="m-0 text-dark">Pembeli</h1>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
                 <div class="row">
-                    <div class="col-lg-6">
-                        <form action="<?= base_url(); ?>User/updatekelaspenjual" method="POST">
-                            <div class="form-group">
-                                <label for="nama">Nama</label>
-                                <input type="text" class="form-control" id="nama" name="name" value="<?= $user['name']; ?>" readonly>
+                    <div class="col-12">
+                        <div class="card">
+                            <!-- /.card-header -->
+                            <div class="card-body table-responsive">
+                                <table id="mytable" class="table table-bordered  table-hover table-striped ">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Nama</th>
+                                            <th>Kelas</th>
+                                            <th>Menu</th>
+                                            <th>Harga</th>
+                                            <th>Jumlah</th>
+                                            <th>Total Harga</th>
+                                            <th>Cat.Tambahan</th>
+                                            <th>Foto</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <?php $i = 1; ?>
+                                        <?php foreach ($transaksi as $tr) : ?>
+                                            <tr>
+                                                <td><?= $i; ?></td>
+                                                <td><?= $tr['nm_pembeli']; ?></td>
+                                                <td><?= $tr['kelas_pembeli']; ?></td>
+                                                <td><?= $tr['menu']; ?></td>
+                                                <td><?= $tr['harga']; ?></td>
+                                                <td><?= $tr['jumlah']; ?></td>
+                                                <td><?= $tr['tot_harga']; ?></td>
+                                                <td><?= $tr['tambahan']; ?></td>
+                                                <td><img src="<?= base_url(); ?>asset/img/<?= $tr['foto']; ?>" alt="" width="70" height="70"></td>
+                                                <td>status</td>
+
+                                            </tr>
+                                            <?php $i++;  ?>
+                                        <?php endforeach; ?>
+                                    </tbody>
+                                </table>
                             </div>
-                            <?php foreach ($jurusan as $jrs) : ?>
-                                <div class="form-group">
-                                    <label for="jurusan">Jurusan</label>
-                                    <input type="text" class="form-control" id="text" name="jurusan" value="<?= $jrs['jurusan']; ?>" readonly>
-                                </div>
-                                <div class="form-group">
-                                    <label for="kelas">Status Kelas Sebelum nya</label>
-                                    <input type="text" class="form-control" id="text" name="kelas" value="<?= $jrs['kelas']; ?>" readonly>
-                                </div>
-                            <?php endforeach; ?>
-                            <div class="form-group">
-                                <label for="tipe">Tipe</label>
-                                <input type="text" class="form-control" id="tipe" name="tipe" value="<?= $user['tipeakun']; ?>" readonly>
-                            </div>
-                            <div class="form-group">
-                                <label for="Kelas">Naik Ke Kelas-</label>
-                                <input type="kls" class="form-control" id="Kelas" name="kls" placeholder="Kelas">
-                            </div>
-                            <small class="text-danger">
-                                <?= form_error('kls'); ?>
-                            </small>
-                            <a href="<?= base_url(); ?>User/Userpembeli" class="btn btn-success">Kembali</a>
-                            <button type="submit" name="ubahpass" class="btn btn-primary">Request</button>
-                        </form>
+                            <!-- /.card-body -->
+                        </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div><!-- /.container-fluid -->
     </div>
+    <!-- /.content-header -->
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+<footer class="py-5 col-lg-12 mt-5" style="background-color: #CE3232;">
+    <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
+    </div>
+</footer>
 
+<!-- Control Sidebar -->
+<aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+</aside>
+<!-- /.control-sidebar -->
 </div>

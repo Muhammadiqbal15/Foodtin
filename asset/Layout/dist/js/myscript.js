@@ -13,6 +13,9 @@ const add = $('.add').data('add');
 const image = $('.image').data('image');
 const update = $('.update').data('update');
 const del = $('.delete').data('delete');
+const cart = $('.cart').data('cart');
+const keranjang = $('.keranjang').data('cart');
+const pesanan = $('.pesanan').data('pesanan');
 
 if(regis){
     Swal.fire({
@@ -115,6 +118,27 @@ if(regis){
         title : 'Berhasil',
         type : 'success',
         text : 'Produk Berhasil ' + del,
+        icon : 'success'
+    });
+}else if(cart){
+    Swal.fire({
+        title : 'Berhasil',
+        type : 'success',
+        text : 'Menu ' + cart + ' Keranjang',
+        icon : 'success'
+    });
+}else if(keranjang){
+    Swal.fire({
+        title : 'Berhasil',
+        type : 'success',
+        text : 'Menu ' + keranjang + ' Keranjang',
+        icon : 'success'
+    });
+}else if(pesanan){
+    Swal.fire({
+        title : 'Pesanan Mu Berhasil ' + pesanan,
+        type : 'success',
+        text : 'Mohon Ditunggu',
         icon : 'success'
     });
 }

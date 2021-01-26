@@ -505,4 +505,126 @@ class User extends CI_Controller
         $this->session->set_flashdata('delete', 'Dihapus');
         redirect('User/produkpenjual');
     }
+
+    public function keranjangpembeli()
+    {
+        $data['title'] = 'Keranjang';
+
+        $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
+        $this->load->view('TemplateAdmin/HeaderAdmin', $data);
+        $this->load->view('User/keranjangpembeli', $data);
+        $this->load->view('TemplateAdmin/FooterAdmin');
+    }
+
+    public function addcart($id)
+    {
+        $product = $this->Foodtin_model->find($id);
+
+        $data = array(
+            'id'      => $product->id_product,
+            'qty'     => 1,
+            'price'   => $product->harga,
+            'name'    => $product->nama,
+            'options'  => array(
+                'kantin' => $product->user,
+                'foto' => $product->foto
+            )
+        );
+
+
+
+        $this->cart->insert($data);
+        redirect('User/keranjangpembeli');
+    }
+
+    public function hapuskeranjang($rowid)
+    {
+        $data = array(
+            'rowid' => $rowid,
+            'qty'   => 0
+        );
+
+        $this->cart->update($data);
+        $this->session->set_flashdata('keranjang', 'Dihapus');
+        redirect('User/keranjangpembeli');
+    }
+
+    public function minuscart($rowid, $qty)
+    {
+        $data = array(
+            'rowid' => $rowid,
+            'qty' => $qty - 1
+        );
+
+        $this->cart->update($data);
+        redirect('User/keranjangpembeli');
+    }
+
+    public function deleteallcart()
+    {
+        $this->cart->destroy();
+        $this->session->set_flashdata('keranjang', 'Dihapus');
+        redirect('User/keranjangpembeli');
+    }
+
+    public function checkout($id, $rowid)
+    {
+        $data['title'] = 'Checkout';
+        $data['product'] = $this->Foodtin_model->find($id);
+        $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
+        $data['jurusan'] = $this->Foodtin_model->getUserdata();
+        $data['rowid'] = $rowid;
+        $this->load->view('TemplateAdmin/HeaderAdmin', $data);
+        $this->load->view('User/Checkout', $data);
+        $this->load->view('TemplateAdmin/FooterAdmin');
+    }
+
+    public function buatpesanan()
+    {
+        $qty = $this->input->post('jumlah');
+        $rowid = $this->input->post('rowid');
+        $data = array(
+            'rowid' => $rowid,
+            'qty' => $qty - $qty
+        );
+
+        $this->cart->update($data);
+
+        $nama = $this->input->post('nama', true);
+        $kls = $this->input->post('kelas', true);
+        $nm_menu = $this->input->post('menu', true);
+        $hrg = $this->input->post('harga', true);
+        $tot_hrg = $this->input->post('total', true);
+        $kantin = $this->input->post('kantin', true);
+        $foto = $this->input->post('foto', true);
+        $tambahan = $this->input->post('tambahan', true);
+        $id_menu = $this->input->post('idproduct', true);
+
+        $data = [
+            'id_product' => $id_menu,
+            'nm_pembeli' => $nama,
+            'kelas_pembeli' => $kls,
+            'menu' => $nm_menu,
+            'harga' => $hrg,
+            'jumlah' => $qty,
+            'tot_harga' => $tot_hrg,
+            'foto'  => $foto,
+            'tambahan' => $tambahan,
+            'kantin' => $kantin
+        ];
+
+        $this->db->insert('transaksi', $data);
+        $this->session->set_flashdata('pesanan', 'Dibuat');
+        redirect('User/keranjangpembeli');
+    }
+
+    public function pesananpenjual()
+    {
+        $data['title'] = 'Pembeli';
+        $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
+        $data['transaksi'] = $this->Foodtin_model->getalltransaksi();
+        $this->load->view('TemplateAdmin/HeaderAdmin', $data);
+        $this->load->view('User/pesananpenjual', $data);
+        $this->load->view('TemplateAdmin/FooterAdmin');
+    }
 }

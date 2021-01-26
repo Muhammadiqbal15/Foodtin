@@ -14,9 +14,40 @@ class Foodtin_model extends CI_Model
         return $query->result_array();
     }
 
-    public function tampilproduct()
+    public function getuser()
     {
+        return $this->db->get('user')->result_array();
+    }
+
+    public function tampilproduct($limit, $start)
+    {
+        $this->db->select('*');
+        $this->db->from('product');
+        $this->db->limit($limit, $start);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function countAllproduct()
+    {
+        return $this->db->get('product')->num_rows();
+    }
+
+    public function cariproduct()
+    {
+        $key = $this->input->post('keyword', true);
+        $this->db->like('nama', $key);
         return $this->db->get('product')->result_array();
+    }
+
+    public function find($id)
+    {
+        $this->db->select('*');
+        $this->db->from('product');
+        $this->db->join('user', 'user.id = product.user');
+        $this->db->where('id_product', $id);
+        $query = $this->db->get();
+        return $query->row();
     }
 
     public function getallproduct()
@@ -69,32 +100,61 @@ class Foodtin_model extends CI_Model
         return $query->result_array();
     }
 
+    public function makber($limit, $start)
+    {
+        $this->db->select('*');
+        $this->db->from('product');
+        $this->db->where('jenis', 'Makanan Berat');
+        $this->db->limit($limit, $start);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
 
-    public function makber()
+    public function countAllproductmakber()
     {
         $this->db->select('*');
         $this->db->from('product');
         $this->db->where('jenis', 'Makanan Berat');
         $query = $this->db->get();
+        return $query->num_rows();
+    }
+
+    public function makring($limit, $start)
+    {
+        $this->db->select('*');
+        $this->db->from('product');
+        $this->db->where('jenis', 'Makanan Ringan');
+        $this->db->limit($limit, $start);
+        $query = $this->db->get();
         return $query->result_array();
     }
 
-    public function makring()
+    public function countAllproductmakring()
     {
         $this->db->select('*');
         $this->db->from('product');
         $this->db->where('jenis', 'Makanan Ringan');
         $query = $this->db->get();
+        return $query->num_rows();
+    }
+
+    public function minuman($limit, $start)
+    {
+        $this->db->select('*');
+        $this->db->from('product');
+        $this->db->where('jenis', 'Minuman');
+        $this->db->limit($limit, $start);
+        $query = $this->db->get();
         return $query->result_array();
     }
 
-    public function minuman()
+    public function countAllproductminuman()
     {
         $this->db->select('*');
         $this->db->from('product');
         $this->db->where('jenis', 'Minuman');
         $query = $this->db->get();
-        return $query->result_array();
+        return $query->num_rows();
     }
 
     public function updateproduct($data, $kondisi)
@@ -123,5 +183,15 @@ class Foodtin_model extends CI_Model
         $query = $this->db->get();
 
         return $query->result();
+    }
+
+    public function getalltransaksi()
+    {
+        $this->db->select('*');
+        $this->db->from('transaksi');
+        $this->db->where('kantin', $this->session->userdata('id'));
+        $this->db->order_by('id_transaksi', 'DESC');
+        $query = $this->db->get();
+        return $query->result_array();
     }
 }

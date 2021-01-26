@@ -42,6 +42,13 @@
                 <?php if ($role > 1) : ?>
                     <?php if ($tipe != "Penjual") : ?>
                         <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="<?= base_url(); ?>User/keranjangpembeli" aria-expanded="true">
+                                    Keranjang
+                                    <i class="fas fa-shopping-cart"></i>
+                                    <span class="badge badge-primary navbar-badge"><?= $this->cart->total_items(); ?></span>
+                                </a>
+                            </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <?= $user['name']; ?>
@@ -120,9 +127,9 @@
                         <div class="col-md-8">
                             <div class="card-body">
                                 <h5 class="card-title"><?= $pr['nama']; ?></h5>
-                                <p class="card-text"><?= $pr['harga']; ?></p>
+                                <p class="card-text">Rp.<?= number_format($pr['harga'], 0, ',', '.'); ?></p>
                                 <?php if (!$this->session->userdata('username')) : ?>
-                                    <a href="" class="btn btn-danger"><i class="fas fa-cart-plus"></i> Cart</a>
+                                    <a href="<?= base_url(); ?>Home/addcart/<?= $pr['id_product'] ?>" class="btn btn-danger"><i class="fas fa-cart-plus"></i> Cart</a>
                                     <a href="<?= base_url(); ?>Home/detail/<?= $pr['id_product'] ?>" class="btn btn-success"><i class="fas fa-eye"></i> Detail</a>
                                     <a href="<?= base_url(); ?>Home/kantin/<?= $pr['user'] ?>" class="btn btn-info"><i class="fas fa-store"></i> Kantin</a>
                                 <?php else : ?>
@@ -132,7 +139,7 @@
                                     ?>
                                     <?php if ($role > 1) : ?>
                                         <?php if ($tipe != "Penjual") : ?>
-                                            <a href="" class="btn btn-danger"><i class="fas fa-cart-plus"></i> Cart</a>
+                                            <a href="<?= base_url(); ?>Home/addcart/<?= $pr['id_product'] ?>" class="btn btn-danger"><i class="fas fa-cart-plus"></i> Cart</a>
                                             <a href="<?= base_url(); ?>Home/detail/<?= $pr['id_product'] ?>" class="btn btn-success"><i class="fas fa-eye"></i> Detail</a>
                                             <a href="<?= base_url(); ?>Home/kantin/<?= $pr['user'] ?>" class="btn btn-info"><i class="fas fa-store"></i> Kantin</a>
                                         <?php else : ?>

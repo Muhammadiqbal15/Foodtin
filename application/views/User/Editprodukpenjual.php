@@ -96,54 +96,56 @@
                     <div class="col-lg-6">
                         <div class="card">
                             <!-- /.card-header -->
-                            <div class="card-body ">
-                                <form action="<?= base_url(); ?>User/updateproduct" method="POST">
-                                    <div class="form-group">
-                                        <input type="hidden" class="form-control" id="iduser" name="iduser" value="<?= $user['id']; ?>">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="hidden" class="form-control" id="id" name="id" value="<?= $product['id_product']; ?>">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="nama">Nama</label>
-                                        <input type="text" class="form-control" id="nama" name="nama" value="<?= $product['nama']; ?>">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="harga">Harga</label>
-                                        <input type="text" class="form-control" id="harga" name="harga" value="<?= $product['harga']; ?>">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="jumlah">Jumlah</label>
-                                        <input type="text" class="form-control" id="jumlah" name="jumlah" value="<?= $product['jumlah']; ?>">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="jenis">Jenis</label>
-                                        <select class="form-control" id="jenis" name="jenis">
-                                            <?php foreach ($jenis as $jn) : ?>
-                                                <?php if ($jn == $product['jenis']) : ?>
-                                                    <option value="<?= $jn; ?>" selected><?= $jn; ?></option>
-                                                <?php else : ?>
-                                                    <option value="<?= $jn; ?>"><?= $jn; ?></option>
-                                                <?php endif; ?>
-                                            <?php endforeach; ?>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="jenis">Status</label>
-                                        <select class="form-control" id="status" name="status">
-                                            <?php foreach ($status as $st) : ?>
-                                                <?php if ($st == $product['status']) : ?>
-                                                    <option value="<?= $st; ?>" selected><?= $st; ?></option>
-                                                <?php else : ?>
-                                                    <option value="<?= $st; ?>"><?= $st; ?></option>
-                                                <?php endif; ?>
-                                            <?php endforeach; ?>
-                                        </select>
-                                    </div>
-                                    <a href="<?= base_url(); ?>User/produkpenjual" class="btn btn-success mt-2">Kembali</a>
-                                    <button class="btn btn-primary mt-2">Edit</button>
-                                </form>
-                            </div>
+                            <?php foreach ($product as $pr) : ?>
+                                <div class="card-body ">
+                                    <form action="<?= base_url(); ?>User/updateproduct" method="POST">
+                                        <div class="form-group">
+                                            <input type="hidden" class="form-control" id="iduser" name="iduser" value="<?= $user['id']; ?>">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="hidden" class="form-control" id="id" name="id" value="<?= $pr['id_product']; ?>">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="nama">Nama</label>
+                                            <input type="text" class="form-control" id="nama" name="nama" value="<?= $pr['nama']; ?>">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="harga">Harga</label>
+                                            <input type="text" class="form-control" id="harga" name="harga" value="<?= $pr['harga']; ?>">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="jumlah">Jumlah</label>
+                                            <input type="text" class="form-control" id="jumlah" name="jumlah" value="<?= $pr['jumlah']; ?>">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="jenis">Jenis</label>
+                                            <select class="form-control" id="jenis" name="jenis">
+                                                <?php foreach ($jenis as $jn) : ?>
+                                                    <?php if ($jn == $product['jenis']) : ?>
+                                                        <option value="<?= $jn; ?>" selected><?= $jn; ?></option>
+                                                    <?php else : ?>
+                                                        <option value="<?= $jn; ?>"><?= $jn; ?></option>
+                                                    <?php endif; ?>
+                                                <?php endforeach; ?>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="jenis">Status</label>
+                                            <select class="form-control" id="status" name="status">
+                                                <?php foreach ($status as $st) : ?>
+                                                    <?php if ($st == $product['status']) : ?>
+                                                        <option value="<?= $st; ?>" selected><?= $st; ?></option>
+                                                    <?php else : ?>
+                                                        <option value="<?= $st; ?>"><?= $st; ?></option>
+                                                    <?php endif; ?>
+                                                <?php endforeach; ?>
+                                            </select>
+                                        </div>
+                                        <a href="<?= base_url(); ?>User/produkpenjual" class="btn btn-success mt-2">Kembali</a>
+                                        <button class="btn btn-primary mt-2">Edit</button>
+                                    </form>
+                                </div>
+                            <?php endforeach; ?>
                             <!-- /.card-body -->
                         </div>
                     </div>

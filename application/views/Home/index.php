@@ -1,5 +1,6 @@
 <div class="successlogin" data-successlogin="<?= $this->session->flashdata('successlogin'); ?>"></div>
 <div class="successlogout" data-successlogout="<?= $this->session->flashdata('successlogout'); ?>"></div>
+<div class="cart" data-cart="<?= $this->session->flashdata('cart'); ?>"></div>
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #CE3232;">
     <a class="navbar-brand" href="<?= base_url(); ?>LandingPage/index">Food.Tin</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -43,6 +44,13 @@
                 <?php if ($role > 1) : ?>
                     <?php if ($tipe != "Penjual") : ?>
                         <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="<?= base_url(); ?>User/keranjangpembeli" aria-expanded="true">
+                                    Keranjang
+                                    <i class="fas fa-shopping-cart"></i>
+                                    <span class="badge badge-primary navbar-badge"><?= $this->cart->total_items(); ?></span>
+                                </a>
+                            </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <?= $user['name']; ?>
@@ -102,6 +110,12 @@
     </div>
 </form>
 
+<?php if (empty($product)) : ?>
+    <div class="alert alert-danger" role="alert">
+        Menu tidak ada atau tidak ditemukan
+    </div>
+<?php endif; ?>
+
 <div class="container-fluid mt-5">
     <div class="row">
         <?php foreach ($product as $pr) : ?>
@@ -114,9 +128,9 @@
                         <div class="col-md-8">
                             <div class="card-body">
                                 <h5 class="card-title"><?= $pr['nama']; ?></h5>
-                                <p class="card-text"><?= $pr['harga']; ?></p>
+                                <p class="card-text">Rp.<?= number_format($pr['harga'], 0, ',', '.'); ?></p>
                                 <?php if (!$this->session->userdata('username')) : ?>
-                                    <a href="" class="btn btn-danger"><i class="fas fa-cart-plus"></i> Cart</a>
+                                    <a href="<?= base_url(); ?>Home/addcart/<?= $pr['id_product'] ?>" class="btn btn-danger"><i class="fas fa-cart-plus"></i> Cart</a>
                                     <a href="<?= base_url(); ?>Home/detail/<?= $pr['id_product'] ?>" class="btn btn-success"><i class="fas fa-eye"></i> Detail</a>
                                     <a href="<?= base_url(); ?>Home/kantin/<?= $pr['user'] ?>" class="btn btn-info"><i class="fas fa-store"></i> Kantin</a>
                                 <?php else : ?>
@@ -126,7 +140,7 @@
                                     ?>
                                     <?php if ($role > 1) : ?>
                                         <?php if ($tipe != "Penjual") : ?>
-                                            <a href="" class="btn btn-danger"><i class="fas fa-cart-plus"></i> Cart</a>
+                                            <a href="<?= base_url(); ?>Home/addcart/<?= $pr['id_product'] ?>" class="btn btn-danger"><i class="fas fa-cart-plus"></i> Cart</a>
                                             <a href="<?= base_url(); ?>Home/detail/<?= $pr['id_product'] ?>" class="btn btn-success"><i class="fas fa-eye"></i> Detail</a>
                                             <a href="<?= base_url(); ?>Home/kantin/<?= $pr['user'] ?>" class="btn btn-info"><i class="fas fa-store"></i> Kantin</a>
                                         <?php else : ?>
@@ -148,21 +162,7 @@
 </div>
 
 
-<nav aria-label="..." class="mt-5 ml-5">
-    <ul class="pagination">
-        <li class="page-item disabled">
-            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-        </li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item active" aria-current="page">
-            <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item">
-            <a class="page-link" href="#">Next</a>
-        </li>
-    </ul>
-</nav>
+<?php echo $this->pagination->create_links(); ?>
 
 <footer class="py-5 col-lg-12 mt-5" style="background-color: #CE3232;">
     <div class="container">

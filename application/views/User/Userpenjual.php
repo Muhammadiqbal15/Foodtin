@@ -62,7 +62,15 @@
             <a href="<?= base_url(); ?>User/produkpenjual" class="nav-link">
               <i class="nav-icon fas fa-hamburger"></i>
               <p>
-                Product
+                Menu
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="<?= base_url(); ?>User/pesananpenjual" class="nav-link">
+              <i class="nav-icon fas fa-utensils"></i>
+              <p>
+                Pembeli
               </p>
             </a>
           </li>

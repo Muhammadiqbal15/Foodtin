@@ -59,6 +59,16 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a href="<?= base_url(); ?>User/keranjangpembeli" class="nav-link">
+                            <span class="badge badge-primary navbar-badge"><?= $this->cart->total_items(); ?></span>
+                            <i class="nav-icon fas fa-shopping-cart"></i>
+                            <p>
+                                Keranjang
+                            </p>
+
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a href="<?= base_url(); ?>Auth/logout" class="nav-link">
                             <i class="nav-icon fas fa-th"></i>
                             <p>
