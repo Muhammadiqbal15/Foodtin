@@ -1,6 +1,7 @@
 <div class="wrapper">
     <div class="successlogin" data-successlogin="<?= $this->session->flashdata('successlogin'); ?>"></div>
     <div class="sukses" data-sukses="<?= $this->session->flashdata('sukses'); ?>"></div>
+    <div class="done" data-done="<?= $this->session->flashdata('done'); ?>"></div>
     <!-- Navbar -->
     <nav class="main-header navbar navbar-expand navbar-white navbar-light">
         <!-- Left navbar links -->
@@ -115,49 +116,87 @@
         <!-- /.sidebar -->
     </aside>
 
+    <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
-        <section class="content-header">
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
             <div class="container-fluid">
                 <div class="row mb-3 mt-3">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark">Perbarui Kelas Mu</h1>
+                        <h1 class="m-0 text-dark">Diterima</h1>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
-                <div class="row">
+                <div class="row mt-4">
                     <div class="col-lg-6">
-                        <form action="<?= base_url(); ?>User/updatekelaspembeli" method="POST">
-                            <div class="form-group">
-                                <label for="nama">Nama</label>
-                                <input type="text" class="form-control" id="nama" name="name" value="<?= $user['name']; ?>" readonly>
-                            </div>
-                            <?php foreach ($jurusan as $jrs) : ?>
-                                <div class="form-group">
-                                    <label for="jurusan">Jurusan</label>
-                                    <input type="text" class="form-control" id="text" name="jurusan" value="<?= $jrs['jurusan']; ?>" readonly>
-                                </div>
-                                <div class="form-group">
-                                    <label for="kelas">Status Kelas Sebelum nya</label>
-                                    <input type="text" class="form-control" id="text" name="kelas" value="<?= $jrs['kelas']; ?>" readonly>
+                        <div class="card">
+                            <!-- /.card-header -->
+                            <?php foreach ($menu as $mn) : ?>
+                                <div class="card-body ">
+                                    <form action="<?= base_url(); ?>User/menuditerima" method="POST">
+                                        <input type="hidden" name="id" value="<?= $mn['id_transaksi'] ?>">
+
+                                        <div class="form-row">
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <label for="menu">Menu</label>
+                                                    <input type="text" class="form-control" id="menu" name="menu" value="<?= $mn['menu']; ?>" readonly>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <label for="harga">Harga</label>
+                                                    <input type="text" class="form-control" id="harga" name="harga" value="<?= $mn['harga']; ?>" readonly>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-row">
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <label for="jml">Jumlah</label>
+                                                    <input type="text" class="form-control" id="jml" name="jml" value="<?= $mn['jumlah']; ?>" readonly>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <label for="tothrg">Total Harga</label>
+                                                    <input type="text" class="form-control" id="tothrg" name="tothrg" value="<?= $mn['tot_harga']; ?>" readonly>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="exampleFormControlTextarea1">Cat.Tambahan</label>
+                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="tambahan" readonly><?= $mn['tambahan']; ?></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="status">Status</label>
+                                            <input type="text" class="form-control" id="status" name="status" value="Sudah Diterima" readonly>
+                                        </div>
+                                        <a href="<?= base_url(); ?>User/pesananpembeli" class="btn btn-success mt-2">Kembali</a>
+                                        <button class="btn btn-primary mt-2">Sudah Diterima</button>
+                                    </form>
                                 </div>
                             <?php endforeach; ?>
-                            <div class="form-group">
-                                <label for="tipe">Tipe</label>
-                                <input type="text" class="form-control" id="tipe" name="tipe" value="<?= $user['tipeakun']; ?>" readonly>
-                            </div>
-                            <div class="form-group">
-                                <label for="Kelas">Naik Ke Kelas-</label>
-                                <input type="kls" class="form-control" id="Kelas" name="kls" placeholder="Kelas">
-                            </div>
-                            <small class="text-danger">
-                                <?= form_error('kls'); ?>
-                            </small>
-                            <a href="<?= base_url(); ?>User/Userpembeli" class="btn btn-success">Kembali</a>
-                            <button type="submit" name="ubahpass" class="btn btn-primary">Request</button>
-                        </form>
+
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </div><!-- /.container-fluid -->
+        </div>
+        <!-- /.content-header -->
+        <!-- /.content -->
     </div>
+    <!-- /.content-wrapper -->
+    <footer class="py-5 col-lg-12 mt-5" style="background-color: #CE3232;">
+        <div class="container">
+            <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
+        </div>
+    </footer>
 
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
 </div>

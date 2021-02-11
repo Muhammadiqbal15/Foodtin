@@ -2,7 +2,6 @@
     <div class="successlogin" data-successlogin="<?= $this->session->flashdata('successlogin'); ?>"></div>
     <div class="sukses" data-sukses="<?= $this->session->flashdata('sukses'); ?>"></div>
     <div class="done" data-done="<?= $this->session->flashdata('done'); ?>"></div>
-    <div class="add" data-add="<?= $this->session->flashdata('add'); ?>"></div>
     <!-- Navbar -->
     <nav class="main-header navbar navbar-expand navbar-white navbar-light">
         <!-- Left navbar links -->
@@ -107,41 +106,80 @@
             <div class="container-fluid">
                 <div class="row mb-3 mt-3">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark">Ubah Foto Product</h1>
+                        <h1 class="m-0 text-dark">Antar Menu</h1>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
                 <div class="row">
-                    <div class="col-lg-12">
-                        <?php foreach ($product as $pr) : ?>
-                            <div class="card mb-3">
-                                <div class="row no-gutters">
-                                    <div class="col-md-4">
-                                        <img src="<?= base_url(); ?>asset/img/<?= $pr['foto']; ?>" class="card-img" alt="...">
-                                        <label for="" class="mt-3 ml-2"><?= $pr['foto']; ?></label>
-                                    </div>
-
-                                    <div class="col-md-8">
-                                        <div class="card-body">
-                                            <?= form_open_multipart('User/updatefotoproduct'); ?>
-                                            <div class="form-group">
-                                                <input type="hidden" class="form-control" id="iduser" name="iduser" value="<?= $user['id']; ?>">
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <!-- /.card-header -->
+                            <?php foreach ($menu as $mn) : ?>
+                                <div class="card-body ">
+                                    <form action="<?= base_url(); ?>User/kirimmenu" method="POST">
+                                        <input type="hidden" name="id" value="<?= $mn['id_transaksi'] ?>">
+                                        <div class="form-row">
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <label for="nama">Nama</label>
+                                                    <input type="text" class="form-control" id="nama" name="nama" value="<?= $mn['nm_pembeli']; ?>" readonly>
+                                                </div>
                                             </div>
-                                            <div class="form-group">
-                                                <input type="hidden" class="form-control" id="id" name="id" value="<?= $pr['id_product']; ?>">
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <label for="kelas">Kelas</label>
+                                                    <input type="text" class="form-control" id="kelas" name="kls" value="<?= $mn['kelas_pembeli']; ?>" readonly>
+                                                </div>
                                             </div>
-
-                                            <div class="form-group">
-                                                <label for="Foto">Foto</label>
-                                                <input type="file" class="form-control-file" id="foto" name="foto">
-                                            </div>
-                                            <a href="<?= base_url(); ?>User/produkpenjual" class="btn btn-success mt-2">Kembali</a>
-                                            <button class="btn  btn-primary mt-2">Ubah</button>
-                                            </form>
                                         </div>
-                                    </div>
+
+                                        <div class="form-row">
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <label for="menu">Menu</label>
+                                                    <input type="text" class="form-control" id="menu" name="menu" value="<?= $mn['menu']; ?>" readonly>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <label for="harga">Harga</label>
+                                                    <input type="text" class="form-control" id="harga" name="harga" value="<?= $mn['harga']; ?>" readonly>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-row">
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <label for="jml">Jumlah</label>
+                                                    <input type="text" class="form-control" id="jml" name="jml" value="<?= $mn['jumlah']; ?>" readonly>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <label for="tothrg">Total Harga</label>
+                                                    <input type="text" class="form-control" id="tothrg" name="tothrg" value="<?= $mn['tot_harga']; ?>" readonly>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="exampleFormControlTextarea1">Cat.Tambahan</label>
+                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="tambahan" readonly><?= $mn['tambahan']; ?></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleFormControlSelect1">Status</label>
+                                            <select class="form-control" id="exampleFormControlSelect1" name="status">
+                                                <option value="<?= $mn['status'] ?>"><?= $mn['status'] ?></option>
+                                                <option value="Diantar">Di Antar</option>
+                                            </select>
+                                        </div>
+                                        <a href="<?= base_url(); ?>User/pesananpenjual" class="btn btn-success mt-2">Kembali</a>
+                                        <button class="btn btn-primary mt-2">Antar</button>
+                                    </form>
                                 </div>
-                            </div>
-                        <?php endforeach; ?>
+                            <?php endforeach; ?>
+
+                        </div>
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
@@ -149,33 +187,9 @@
         <!-- /.content-header -->
         <!-- /.content -->
     </div>
-
-    <!-- Button trigger modal -->
-
-
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header text-white" style="background-color: #CE3232;">
-                    <h5 class="modal-title" id="exampleModalLabel">Jual</h5>
-                </div>
-                <div class="modal-body">
-
-                </div>
-            </div>
-        </div>
-    </div>
     <!-- /.content-wrapper -->
     <footer class="py-5 col-lg-12 mt-5" style="background-color: #CE3232;">
         <div class="container">
             <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
         </div>
     </footer>
-
-    <!-- Control Sidebar -->
-    <aside class="control-sidebar control-sidebar-dark">
-        <!-- Control sidebar content goes here -->
-    </aside>
-    <!-- /.control-sidebar -->
-</div>

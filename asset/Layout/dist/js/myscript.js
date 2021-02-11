@@ -16,6 +16,7 @@ const del = $('.delete').data('delete');
 const cart = $('.cart').data('cart');
 const keranjang = $('.keranjang').data('cart');
 const pesanan = $('.pesanan').data('pesanan');
+const kirim = $('.kirim').data('kirim');
 
 if(regis){
     Swal.fire({
@@ -141,6 +142,13 @@ if(regis){
         text : 'Mohon Ditunggu',
         icon : 'success'
     });
+}else if(kirim){
+    Swal.fire({
+        title : kirim,
+        type: 'success',
+        text : 'Pesanan Akan Diantar',
+        icon : 'success'
+    });
 }
 
 
@@ -158,6 +166,25 @@ $('.tombol-hapus').on('click',function(e){
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
         confirmButtonText: 'Ya, Hapus Product'
+    }).then((result) => {
+        if (result.value) {
+            document.location.href = href;
+        }
+    })
+});
+
+$('.diterima').on('click',function(e){
+    e.preventDefault();
+    const href = $(this).attr('href');
+
+    Swal.fire({
+        title: 'Apakah Pesanan Sudah Diterima?',
+        text: "Mohon Periksa Kembali",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Ya, Sudah Diterima'
     }).then((result) => {
         if (result.value) {
             document.location.href = href;

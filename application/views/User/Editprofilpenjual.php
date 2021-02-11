@@ -41,7 +41,7 @@
             <!-- Sidebar user panel (optional) -->
             <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                 <div class="info">
-                    <h6 class="text-white" style="font-size: 25px;"><?= $user['username']; ?></h6>
+                    <a href="#" class="d-block">Selamat Datang <br> <?= $user['username']; ?></a>
                 </div>
             </div>
 
@@ -71,6 +71,24 @@
                             <i class="nav-icon fas fa-hamburger"></i>
                             <p>
                                 Menu
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="<?= base_url(); ?>User/pesananpenjual" class="nav-link">
+                            <span class="badge badge-primary navbar-badge"><?= $notifdibuat; ?></span>
+                            <i class="nav-icon fas fa-utensils"></i>
+                            <p>
+                                Pesanan Pembeli
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="<?= base_url(); ?>User/pesanandiantar" class="nav-link">
+                            <span class="badge badge-primary navbar-badge"><?= $notifdiantar; ?></span>
+                            <i class="nav-icon fas fa-paper-plane"></i>
+                            <p>
+                                Pesanan Diantar
                             </p>
                         </a>
                     </li>
@@ -181,7 +199,7 @@
                             <!-- /.card-body -->
 
                             <div class="card-footer">
-                                <a href="<?= base_url(); ?>User/Userpembeli" class="btn btn-success">Kembali</a>
+                                <a href="<?= base_url(); ?>User/Userpenjual" class="btn btn-success">Kembali</a>
                                 <button type="submit" class="btn btn-primary">Edit</button>
                             </div>
                             </form>

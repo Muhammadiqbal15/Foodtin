@@ -1,6 +1,7 @@
 <div class="wrapper">
     <div class="successlogin" data-successlogin="<?= $this->session->flashdata('successlogin'); ?>"></div>
     <div class="sukses" data-sukses="<?= $this->session->flashdata('sukses'); ?>"></div>
+    <div class="done" data-done="<?= $this->session->flashdata('done'); ?>"></div>
     <!-- Navbar -->
     <nav class="main-header navbar navbar-expand navbar-white navbar-light">
         <!-- Left navbar links -->
@@ -115,49 +116,65 @@
         <!-- /.sidebar -->
     </aside>
 
+    <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
-        <section class="content-header">
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
             <div class="container-fluid">
                 <div class="row mb-3 mt-3">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark">Perbarui Kelas Mu</h1>
+                        <h1 class="m-0 text-dark">Pesanan Saya</h1>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
-                <div class="row">
-                    <div class="col-lg-6">
-                        <form action="<?= base_url(); ?>User/updatekelaspembeli" method="POST">
-                            <div class="form-group">
-                                <label for="nama">Nama</label>
-                                <input type="text" class="form-control" id="nama" name="name" value="<?= $user['name']; ?>" readonly>
-                            </div>
-                            <?php foreach ($jurusan as $jrs) : ?>
-                                <div class="form-group">
-                                    <label for="jurusan">Jurusan</label>
-                                    <input type="text" class="form-control" id="text" name="jurusan" value="<?= $jrs['jurusan']; ?>" readonly>
+                <div class="row mt-4">
+                    <div class="col-sm-12">
+                        <?php foreach ($pesanansaya as $ps) : ?>
+                            <div class="card mb-3 mt-3">
+                                <?php if ($ps['status'] == 'Sedang Dibuat') : ?>
+                                    <div class="card-header bg-danger">Pesanan Mu <?= $ps['status']; ?></div>
+                                <?php else : ?>
+                                    <div class="card-header bg-success">Pesanan Mu <?= $ps['status']; ?></div>
+                                <?php endif; ?>
+                                <div class="row no-gutters">
+                                    <div class="col-md-4">
+                                        <img src="<?= base_url(); ?>asset/img/<?= $ps['foto']; ?>" alt="..." class="img-fluid">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <h5 class="card-text mt-5">Menu : <?= $ps['menu']; ?></h5>
+                                                    <h5 class="card-text mt-2">Harga : <?= $ps['harga']; ?></h5>
+                                                    <h5 class="card-text mt-2">Jumlah : <?= $ps['jumlah']; ?></h5>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <h5 class="card-text mt-5">Total Harga : <?= $ps['tot_harga']; ?></h5>
+                                                    <h5 class="card-text mt-2">Tambahan : <?= $ps['tambahan']; ?></h5>
+                                                    <h5 class="card-text mt-2">Status : <?= $ps['status']; ?></h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="form-group">
-                                    <label for="kelas">Status Kelas Sebelum nya</label>
-                                    <input type="text" class="form-control" id="text" name="kelas" value="<?= $jrs['kelas']; ?>" readonly>
-                                </div>
-                            <?php endforeach; ?>
-                            <div class="form-group">
-                                <label for="tipe">Tipe</label>
-                                <input type="text" class="form-control" id="tipe" name="tipe" value="<?= $user['tipeakun']; ?>" readonly>
                             </div>
-                            <div class="form-group">
-                                <label for="Kelas">Naik Ke Kelas-</label>
-                                <input type="kls" class="form-control" id="Kelas" name="kls" placeholder="Kelas">
-                            </div>
-                            <small class="text-danger">
-                                <?= form_error('kls'); ?>
-                            </small>
-                            <a href="<?= base_url(); ?>User/Userpembeli" class="btn btn-success">Kembali</a>
-                            <button type="submit" name="ubahpass" class="btn btn-primary">Request</button>
-                        </form>
+                        <?php endforeach; ?>
                     </div>
                 </div>
-            </div>
-        </section>
+            </div><!-- /.container-fluid -->
+        </div>
+        <!-- /.content-header -->
+        <!-- /.content -->
     </div>
+    <!-- /.content-wrapper -->
+    <footer class="py-5 col-lg-12 mt-5" style="background-color: #CE3232;">
+        <div class="container">
+            <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
+        </div>
+    </footer>
 
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
 </div>

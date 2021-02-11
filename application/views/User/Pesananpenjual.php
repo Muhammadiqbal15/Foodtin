@@ -2,6 +2,7 @@
     <div class="successlogin" data-successlogin="<?= $this->session->flashdata('successlogin'); ?>"></div>
     <div class="sukses" data-sukses="<?= $this->session->flashdata('sukses'); ?>"></div>
     <div class="done" data-done="<?= $this->session->flashdata('done'); ?>"></div>
+    <div class="kirim" data-kirim="<?= $this->session->flashdata('kirim'); ?>"></div>
     <!-- Navbar -->
     <nav class="main-header navbar navbar-expand navbar-white navbar-light">
         <!-- Left navbar links -->
@@ -33,7 +34,7 @@
             <!-- Sidebar user panel (optional) -->
             <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                 <div class="info">
-                    <a href="#" class="d-block">Selamat Datang <?= $user['username']; ?></a>
+                    <a href="#" class="d-block">Selamat Datang <br> <?= $user['username']; ?></a>
                 </div>
             </div>
 
@@ -68,9 +69,19 @@
                     </li>
                     <li class="nav-item">
                         <a href="<?= base_url(); ?>User/pesananpenjual" class="nav-link">
+                            <span class="badge badge-primary navbar-badge"><?= $notifdibuat; ?></span>
                             <i class="nav-icon fas fa-utensils"></i>
                             <p>
-                                Pembeli
+                                Pesanan Pembeli
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="<?= base_url(); ?>User/pesanandiantar" class="nav-link">
+                            <span class="badge badge-primary navbar-badge"><?= $notifdiantar; ?></span>
+                            <i class="nav-icon fas fa-paper-plane"></i>
+                            <p>
+                                Pesanan Diantar
                             </p>
                         </a>
                     </li>
@@ -96,7 +107,7 @@
             <div class="container-fluid">
                 <div class="row mb-3 mt-3">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark">Pembeli</h1>
+                        <h1 class="m-0 text-dark">Pesanan Pembeli</h1>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
                 <div class="row">
@@ -117,6 +128,7 @@
                                             <th>Cat.Tambahan</th>
                                             <th>Foto</th>
                                             <th>Status</th>
+                                            <th>Opsi</th>
                                         </tr>
                                     </thead>
 
@@ -133,7 +145,10 @@
                                                 <td><?= $tr['tot_harga']; ?></td>
                                                 <td><?= $tr['tambahan']; ?></td>
                                                 <td><img src="<?= base_url(); ?>asset/img/<?= $tr['foto']; ?>" alt="" width="70" height="70"></td>
-                                                <td>status</td>
+                                                <td><?= $tr['status']; ?></td>
+                                                <td>
+                                                    <a href="<?= base_url(); ?>User/sendmenu/<?= $tr['id_transaksi']; ?>" class="btn btn-success btn-sm"><i class=" fas fa-paper-plane"></i> Antar</a>
+                                                </td>
 
                                             </tr>
                                             <?php $i++;  ?>
@@ -159,8 +174,3 @@
 </footer>
 
 <!-- Control Sidebar -->
-<aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-</aside>
-<!-- /.control-sidebar -->
-</div>

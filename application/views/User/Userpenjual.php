@@ -33,7 +33,7 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="info">
-          <a href="#" class="d-block">Selamat Datang <?= $user['username']; ?></a>
+          <a href="#" class="d-block">Selamat Datang <br> <?= $user['username']; ?></a>
         </div>
       </div>
 
@@ -68,9 +68,28 @@
           </li>
           <li class="nav-item">
             <a href="<?= base_url(); ?>User/pesananpenjual" class="nav-link">
+              <span class="badge badge-primary navbar-badge"><?= $notifdibuat; ?></span>
               <i class="nav-icon fas fa-utensils"></i>
               <p>
-                Pembeli
+                Pesanan Pembeli
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="<?= base_url(); ?>User/pesanandiantar" class="nav-link">
+              <span class="badge badge-primary navbar-badge"><?= $notifdiantar; ?></span>
+              <i class="nav-icon fas fa-paper-plane"></i>
+              <p>
+                Pesanan Diantar
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="<?= base_url(); ?>User/pesanansdhditerima" class="nav-link">
+              <!-- <span class="badge badge-primary navbar-badge"><?= $notifditerima; ?></span> -->
+              <i class="nav-icon fas fa-paper-plane"></i>
+              <p>
+                Pesanan Telah Diterima
               </p>
             </a>
           </li>
@@ -96,7 +115,7 @@
       <div class="container-fluid">
         <div class="row mb-3 mt-3">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Dashboard User Pembeli</h1>
+            <h1 class="m-0 text-dark">Dashboard User Penjual</h1>
           </div><!-- /.col -->
         </div><!-- /.row -->
         <div class="row mt-4">

@@ -190,7 +190,150 @@ class Foodtin_model extends CI_Model
         $this->db->select('*');
         $this->db->from('transaksi');
         $this->db->where('kantin', $this->session->userdata('id'));
+        $this->db->where('status', 'Sedang Dibuat');
         $this->db->order_by('id_transaksi', 'DESC');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function getsdgdibuat()
+    {
+        $this->db->select('*');
+        $this->db->from('transaksi');
+        $this->db->where('kantin', $this->session->userdata('id'));
+        $this->db->where('status', 'Sedang Dibuat');
+        $this->db->order_by('id_transaksi', 'DESC');
+        $query = $this->db->get();
+        return $query->num_rows();
+    }
+
+    public function getmenubyid($id)
+    {
+        $this->db->select('*');
+        $this->db->from('transaksi');
+        $this->db->where('id_transaksi', $id);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function getsudahdiantar()
+    {
+        $this->db->select('*');
+        $this->db->from('transaksi');
+        $this->db->where('kantin', $this->session->userdata('id'));
+        $this->db->where('status', 'Diantar');
+        $this->db->order_by('id_transaksi', 'DESC');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function getsudahditerima()
+    {
+        $this->db->select('*');
+        $this->db->from('transaksi');
+        $this->db->where('kantin', $this->session->userdata('id'));
+        $this->db->where('status', 'Sudah Diterima');
+        $this->db->order_by('id_transaksi', 'DESC');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function getsdhditerima()
+    {
+        $this->db->select('*');
+        $this->db->from('transaksi');
+        $this->db->where('kantin', $this->session->userdata('id'));
+        $this->db->where('status', 'Sudah Diterima');
+        $this->db->order_by('id_transaksi', 'DESC');
+        $query = $this->db->get();
+        return $query->num_rows();
+    }
+
+    public function getsdhdiantar()
+    {
+        $this->db->select('*');
+        $this->db->from('transaksi');
+        $this->db->where('kantin', $this->session->userdata('id'));
+        $this->db->where('status', 'Diantar');
+        $this->db->order_by('id_transaksi', 'DESC');
+        $query = $this->db->get();
+        return $query->num_rows();
+    }
+
+    public function pesanansaya()
+    {
+        $this->db->select('*');
+        $this->db->from('transaksi');
+        $this->db->where('id_userpembeli', $this->session->userdata('id'));
+        $query = $this->db->get();
+        return $query->num_rows();
+    }
+
+    public function pesanansayasdgdibuat()
+    {
+        $this->db->select('*');
+        $this->db->from('transaksi');
+        $this->db->where('id_userpembeli', $this->session->userdata('id'));
+        $this->db->where('status', 'Sedang Dibuat');
+        $query = $this->db->get();
+        return $query->num_rows();
+    }
+
+    public function pesanansayasdgdiantar()
+    {
+        $this->db->select('*');
+        $this->db->from('transaksi');
+        $this->db->where('id_userpembeli', $this->session->userdata('id'));
+        $this->db->where('status', 'Diantar');
+        $query = $this->db->get();
+        return $query->num_rows();
+    }
+
+    public function pesanansayaselesai()
+    {
+        $this->db->select('*');
+        $this->db->from('transaksi');
+        $this->db->where('id_userpembeli', $this->session->userdata('id'));
+        $this->db->where('status', 'Sudah Diterima');
+        $query = $this->db->get();
+        return $query->num_rows();
+    }
+
+    public function getpesanansayadibuat()
+    {
+        $this->db->select('*');
+        $this->db->from('transaksi');
+        $this->db->where('id_userpembeli', $this->session->userdata('id'));
+        $this->db->where('status', 'Sedang Dibuat');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function getpesanansayadiantar()
+    {
+        $this->db->select('*');
+        $this->db->from('transaksi');
+        $this->db->where('id_userpembeli', $this->session->userdata('id'));
+        $this->db->where('status', 'Diantar');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function getpesanansayaselesai()
+    {
+        $this->db->select('*');
+        $this->db->from('transaksi');
+        $this->db->where('id_userpembeli', $this->session->userdata('id'));
+        $this->db->where('status', 'Sudah Diterima');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function getpesanansayabyid($id)
+    {
+        $this->db->select('*');
+        $this->db->from('transaksi');
+        $this->db->where('id_transaksi', $id);
         $query = $this->db->get();
         return $query->result_array();
     }

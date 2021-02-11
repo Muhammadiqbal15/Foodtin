@@ -2,10 +2,6 @@
     <div class="successlogin" data-successlogin="<?= $this->session->flashdata('successlogin'); ?>"></div>
     <div class="sukses" data-sukses="<?= $this->session->flashdata('sukses'); ?>"></div>
     <div class="done" data-done="<?= $this->session->flashdata('done'); ?>"></div>
-    <div class="add" data-add="<?= $this->session->flashdata('add'); ?>"></div>
-    <div class="image" data-image="<?= $this->session->flashdata('image'); ?>"></div>
-    <div class="update" data-update="<?= $this->session->flashdata('update'); ?>"></div>
-    <div class="delete" data-delete="<?= $this->session->flashdata('delete'); ?>"></div>
     <!-- Navbar -->
     <nav class="main-header navbar navbar-expand navbar-white navbar-light">
         <!-- Left navbar links -->
@@ -89,6 +85,15 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a href="<?= base_url(); ?>User/pesanansdhditerima" class="nav-link">
+                            <span class="badge badge-primary navbar-badge"><?= $notifditerima; ?></span>
+                            <i class="nav-icon fas fa-thumbs-up"></i>
+                            <p>
+                                Pesanan Telah Diterima
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a href="<?= base_url(); ?>Auth/logout" class="nav-link">
                             <i class="nav-icon fas fa-th"></i>
                             <p>
@@ -110,13 +115,10 @@
             <div class="container-fluid">
                 <div class="row mb-3 mt-3">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark">Menu</h1>
+                        <h1 class="m-0 text-dark">Pesanan Pembeli</h1>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
                 <div class="row">
-                    <button type="button" class="btn btn-primary mt-3 mb-3 ml-2" data-toggle="modal" data-target="#exampleModal">
-                        <i class="fas fa-dollar-sign"></i> Tambah Menu
-                    </button>
                     <div class="col-12">
                         <div class="card">
                             <!-- /.card-header -->
@@ -126,31 +128,31 @@
                                         <tr>
                                             <th>No</th>
                                             <th>Nama</th>
+                                            <th>Kelas</th>
+                                            <th>Menu</th>
                                             <th>Harga</th>
-                                            <th>Foto</th>
                                             <th>Jumlah</th>
-                                            <th>Jenis</th>
+                                            <th>Total Harga</th>
+                                            <th>Cat.Tambahan</th>
+                                            <th>Foto</th>
                                             <th>Status</th>
-                                            <th>Aksi</th>
                                         </tr>
                                     </thead>
 
                                     <tbody>
                                         <?php $i = 1; ?>
-                                        <?php foreach ($product as $pr) : ?>
+                                        <?php foreach ($transaksi as $tr) : ?>
                                             <tr>
                                                 <td><?= $i; ?></td>
-                                                <td><?= $pr['nama']; ?></td>
-                                                <td>Rp.<?= number_format($pr['harga'], 0, ',', '.'); ?></td>
-                                                <td><img src="<?= base_url(); ?>asset/img/<?= $pr['foto']; ?>" alt="" width="70" height="70"></td>
-                                                <td><?= $pr['jumlah']; ?></td>
-                                                <td><?= $pr['jenis']; ?></td>
-                                                <td><?= $pr['status']; ?></td>
-                                                <td>
-                                                    <a href="<?= base_url(); ?>User/editproduct/<?= $pr['id_product']; ?>" class="btn btn-sm btn-success"><i class="fas fa-edit"></i> Edit</a>
-                                                    <a href="<?= base_url(); ?>User/deleteproduct/<?= $pr['id_product']; ?>" class="btn btn-sm btn-danger tombol-hapus"><i class="fas fa-trash"></i> Hapus</a>
-                                                    <a href="<?= base_url(); ?>User/editpicproduct/<?= $pr['id_product']; ?>" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i> Ubah Foto</a>
-                                                </td>
+                                                <td><?= $tr['nm_pembeli']; ?></td>
+                                                <td><?= $tr['kelas_pembeli']; ?></td>
+                                                <td><?= $tr['menu']; ?></td>
+                                                <td><?= $tr['harga']; ?></td>
+                                                <td><?= $tr['jumlah']; ?></td>
+                                                <td><?= $tr['tot_harga']; ?></td>
+                                                <td><?= $tr['tambahan']; ?></td>
+                                                <td><img src="<?= base_url(); ?>asset/img/<?= $tr['foto']; ?>" alt="" width="70" height="70"></td>
+                                                <td>Sudah <?= $tr['status']; ?></td>
                                             </tr>
                                             <?php $i++;  ?>
                                         <?php endforeach; ?>
@@ -166,64 +168,7 @@
         <!-- /.content-header -->
         <!-- /.content -->
     </div>
-
-    <!-- Button trigger modal -->
-
-
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header text-white" style="background-color: #CE3232;">
-                    <h5 class="modal-title" id="exampleModalLabel">Jual</h5>
-                </div>
-                <div class="modal-body">
-                    <?= form_open_multipart('User/addproduct'); ?>
-                    <div class="form-group">
-                        <input type="hidden" class="form-control" id="iduser" name="iduser" value="<?= $user['id']; ?>">
-                        <input type="hidden" class="form-control" id="iduser" name="jurusan" value="<?= $user['jurusan']; ?>">
-                        <input type="hidden" class="form-control" id="iduser" name="kelas" value="<?= $user['kelas']; ?>">
-                    </div>
-                    <div class="form-group">
-                        <label for="nama">Nama</label>
-                        <input type="text" class="form-control" id="nama" name="nama">
-                    </div>
-                    <div class="form-group">
-                        <label for="harga">Harga</label>
-                        <input type="text" class="form-control" id="harga" name="harga">
-                    </div>
-                    <div class="form-group">
-                        <label for="Foto">Foto</label>
-                        <input type="file" class="form-control-file" id="foto" name="foto">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="jumlah">Jumlah</label>
-                        <input type="text" class="form-control" id="jumlah" name="jumlah">
-                    </div>
-                    <div class="form-group">
-                        <label for="jenis">Jenis</label>
-                        <select class="form-control" id="jenis" name="jenis">
-                            <option>Makanan Berat</option>
-                            <option>Makanan Ringan</option>
-                            <option>Minuman</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="jenis">Status</label>
-                        <select class="form-control" id="status" name="status">
-                            <option>Ready</option>
-                            <option>Pre Order (PO)</option>
-                        </select>
-                    </div>
-                    <button class="btn btn-primary"><i class="fas fa-plus"></i> Tambah</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
     <!-- /.content-wrapper -->
-
     <footer class="py-5 col-lg-12 mt-5" style="background-color: #CE3232;">
         <div class="container">
             <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>

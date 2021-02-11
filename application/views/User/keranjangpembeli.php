@@ -36,7 +36,7 @@
             <!-- Sidebar user panel (optional) -->
             <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                 <div class="info">
-                    <a href="#" class="d-block">Selamat Datang <?= $user['username']; ?></a>
+                    <a href="#" class="d-block">Selamat Datang <br> <?= $user['username']; ?></a>
                 </div>
             </div>
 
@@ -70,6 +70,39 @@
                             </p>
 
                         </a>
+                    </li>
+                    <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-hamburger"></i>
+                            <p>
+                                <span class="badge badge-primary navbar-badge"><?= $pesanan; ?></span>
+                                Pesanan Saya
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="<?= base_url(); ?>User/pesananpembelidibuat" class="nav-link">
+                                    <span class="badge badge-primary navbar-badge"><?= $dibuat; ?></span>
+                                    <i class="nav-icon fas fa-hamburger"></i>
+                                    <p>Sedang Dibuat</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?= base_url(); ?>User/pesananpembelidiantar" class="nav-link">
+                                    <span class="badge badge-primary navbar-badge"><?= $diantar; ?></span>
+                                    <i class="nav-icon fas fa-hamburger"></i>
+                                    <p>Sedang Diantar</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?= base_url(); ?>User/pesananselesai" class="nav-link">
+                                    <span class="badge badge-primary navbar-badge"><?= $diterima; ?></span>
+                                    <i class="nav-icon fas fa-hamburger"></i>
+                                    <p>Selesai</p>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
                     <li class="nav-item">
                         <a href="<?= base_url(); ?>Auth/logout" class="nav-link">

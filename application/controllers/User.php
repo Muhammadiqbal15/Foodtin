@@ -27,6 +27,8 @@ class User extends CI_Controller
             $data['title'] = "Dasboard";
             $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
             $data['jurusan'] = $this->Foodtin_model->getUserdata();
+            $data['notifdiantar'] = $this->Foodtin_model->getsdhdiantar();
+            $data['notifdibuat'] = $this->Foodtin_model->getsdgdibuat();
             $this->load->view('TemplateAdmin/HeaderAdmin', $data);
             $this->load->view('User/Userpenjual', $data);
             $this->load->view('TemplateAdmin/FooterAdmin');
@@ -43,6 +45,10 @@ class User extends CI_Controller
 
             $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
             $data['jurusan'] = $this->Foodtin_model->getUserdata();
+            $data['pesanan'] = $this->Foodtin_model->pesanansaya();
+            $data['diantar'] = $this->Foodtin_model->pesanansayasdgdiantar();
+            $data['dibuat'] = $this->Foodtin_model->pesanansayasdgdibuat();
+            $data['diterima'] = $this->Foodtin_model->pesanansayaselesai();
             $this->load->view('TemplateAdmin/HeaderAdmin', $data);
             $this->load->view('User/Userpembeli', $data);
             $this->load->view('TemplateAdmin/FooterAdmin');
@@ -55,6 +61,10 @@ class User extends CI_Controller
 
         $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
         $data['jurusan'] = $this->Foodtin_model->getUserdata();
+        $data['pesanan'] = $this->Foodtin_model->pesanansaya();
+        $data['diantar'] = $this->Foodtin_model->pesanansayasdgdiantar();
+        $data['dibuat'] = $this->Foodtin_model->pesanansayasdgdibuat();
+        $data['diterima'] = $this->Foodtin_model->pesanansayaselesai();
 
 
         $this->form_validation->set_rules('name', 'Nama', 'required|trim', [
@@ -122,7 +132,8 @@ class User extends CI_Controller
 
         $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
         $data['jurusan'] = $this->Foodtin_model->getUserdata();
-
+        $data['notifdiantar'] = $this->Foodtin_model->getsdhdiantar();
+        $data['notifdibuat'] = $this->Foodtin_model->getsdgdibuat();
 
         $this->form_validation->set_rules('name', 'Nama', 'required|trim', [
             'required' => 'Nama atau Nama Kantin Harus Diisi'
@@ -186,6 +197,10 @@ class User extends CI_Controller
     {
         $data['title'] = "Ubah Password";
         $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
+        $data['pesanan'] = $this->Foodtin_model->pesanansaya();
+        $data['diantar'] = $this->Foodtin_model->pesanansayasdgdiantar();
+        $data['dibuat'] = $this->Foodtin_model->pesanansayasdgdibuat();
+        $data['diterima'] = $this->Foodtin_model->pesanansayaselesai();
 
         $this->form_validation->set_rules('passlama', 'Password Saat ini', 'required|trim');
         $this->form_validation->set_rules('passbaru', 'Password Baru', 'required|trim|matches[repassbaru]', [
@@ -228,6 +243,8 @@ class User extends CI_Controller
     {
         $data['title'] = "Ubah Password";
         $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
+        $data['notifdiantar'] = $this->Foodtin_model->getsdhdiantar();
+        $data['notifdibuat'] = $this->Foodtin_model->getsdgdibuat();
 
         $this->form_validation->set_rules('passlama', 'Password Saat ini', 'required|trim');
         $this->form_validation->set_rules('passbaru', 'Password Baru', 'required|trim|matches[repassbaru]', [
@@ -271,6 +288,10 @@ class User extends CI_Controller
         $data['title'] = "Perbarui Kelas Mu";
         $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
         $data['jurusan'] = $this->Foodtin_model->getUserdata();
+        $data['pesanan'] = $this->Foodtin_model->pesanansaya();
+        $data['diantar'] = $this->Foodtin_model->pesanansayasdgdiantar();
+        $data['dibuat'] = $this->Foodtin_model->pesanansayasdgdibuat();
+        $data['diterima'] = $this->Foodtin_model->pesanansayaselesai();
         $this->load->view('TemplateAdmin/HeaderAdmin', $data);
         $this->load->view('User/Perbaruikelaspembeli', $data);
         $this->load->view('TemplateAdmin/FooterAdmin');
@@ -281,6 +302,8 @@ class User extends CI_Controller
         $data['title'] = "Perbarui Kelas Mu";
         $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
         $data['jurusan'] = $this->Foodtin_model->getUserdata();
+        $data['notifdiantar'] = $this->Foodtin_model->getsdhdiantar();
+        $data['notifdibuat'] = $this->Foodtin_model->getsdgdibuat();
         $this->load->view('TemplateAdmin/HeaderAdmin', $data);
         $this->load->view('User/Perbaruikelaspenjual', $data);
         $this->load->view('TemplateAdmin/FooterAdmin');
@@ -294,6 +317,10 @@ class User extends CI_Controller
             $data['title'] = "Perbarui Kelas Mu";
             $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
             $data['jurusan'] = $this->Foodtin_model->getUserdata();
+            $data['pesanan'] = $this->Foodtin_model->pesanansaya();
+            $data['diantar'] = $this->Foodtin_model->pesanansayasdgdiantar();
+            $data['dibuat'] = $this->Foodtin_model->pesanansayasdgdibuat();
+            $data['diterima'] = $this->Foodtin_model->pesanansayaselesai();
             $this->load->view('TemplateAdmin/HeaderAdmin', $data);
             $this->load->view('User/Perbaruikelaspembeli', $data);
             $this->load->view('TemplateAdmin/FooterAdmin');
@@ -320,6 +347,8 @@ class User extends CI_Controller
             $data['title'] = "Perbarui Kelas Mu";
             $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
             $data['jurusan'] = $this->Foodtin_model->getUserdata();
+            $data['notifdiantar'] = $this->Foodtin_model->getsdhdiantar();
+            $data['notifdibuat'] = $this->Foodtin_model->getsdgdibuat();
             $this->load->view('TemplateAdmin/HeaderAdmin', $data);
             $this->load->view('User/Perbaruikelaspenjual', $data);
             $this->load->view('TemplateAdmin/FooterAdmin');
@@ -345,6 +374,8 @@ class User extends CI_Controller
         $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
         $data['product'] = $this->Foodtin_model->getallproduct();
         $data['jurusan'] = $this->Foodtin_model->getUserdata();
+        $data['notifdiantar'] = $this->Foodtin_model->getsdhdiantar();
+        $data['notifdibuat'] = $this->Foodtin_model->getsdgdibuat();
         $this->load->view('TemplateAdmin/HeaderAdmin', $data);
         $this->load->view('User/Produkpenjual', $data);
         $this->load->view('TemplateAdmin/FooterAdmin');
@@ -417,6 +448,8 @@ class User extends CI_Controller
         $data['product'] = $this->Foodtin_model->getallproductbyid($id_product);
         $data['jenis'] = ['Makanan Berat', 'Makanan Ringan', 'Minuman'];
         $data['status'] = ['Ready', 'Pre Order (PO)'];
+        $data['notifdiantar'] = $this->Foodtin_model->getsdhdiantar();
+        $data['notifdibuat'] = $this->Foodtin_model->getsdgdibuat();
         $this->load->view('TemplateAdmin/HeaderAdmin', $data);
         $this->load->view('User/Editprodukpenjual', $data);
         $this->load->view('TemplateAdmin/FooterAdmin');
@@ -428,6 +461,8 @@ class User extends CI_Controller
         $id_product = $id;
         $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
         $data['product'] = $this->Foodtin_model->getallproductbyid($id_product);
+        $data['notifdiantar'] = $this->Foodtin_model->getsdhdiantar();
+        $data['notifdibuat'] = $this->Foodtin_model->getsdgdibuat();
         $this->load->view('TemplateAdmin/HeaderAdmin', $data);
         $this->load->view('User/Editfotoprodukpenjual', $data);
         $this->load->view('TemplateAdmin/FooterAdmin');
@@ -511,6 +546,10 @@ class User extends CI_Controller
         $data['title'] = 'Keranjang';
 
         $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
+        $data['pesanan'] = $this->Foodtin_model->pesanansaya();
+        $data['diantar'] = $this->Foodtin_model->pesanansayasdgdiantar();
+        $data['dibuat'] = $this->Foodtin_model->pesanansayasdgdibuat();
+        $data['diterima'] = $this->Foodtin_model->pesanansayaselesai();
         $this->load->view('TemplateAdmin/HeaderAdmin', $data);
         $this->load->view('User/keranjangpembeli', $data);
         $this->load->view('TemplateAdmin/FooterAdmin');
@@ -599,9 +638,11 @@ class User extends CI_Controller
         $foto = $this->input->post('foto', true);
         $tambahan = $this->input->post('tambahan', true);
         $id_menu = $this->input->post('idproduct', true);
+        $iduser = $this->input->post('idpembeli', true);
 
         $data = [
             'id_product' => $id_menu,
+            'id_userpembeli' => $iduser,
             'nm_pembeli' => $nama,
             'kelas_pembeli' => $kls,
             'menu' => $nm_menu,
@@ -610,6 +651,7 @@ class User extends CI_Controller
             'tot_harga' => $tot_hrg,
             'foto'  => $foto,
             'tambahan' => $tambahan,
+            'status' => 'Sedang Dibuat',
             'kantin' => $kantin
         ];
 
@@ -623,8 +665,150 @@ class User extends CI_Controller
         $data['title'] = 'Pembeli';
         $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
         $data['transaksi'] = $this->Foodtin_model->getalltransaksi();
+        $data['notifdiantar'] = $this->Foodtin_model->getsdhdiantar();
+        $data['notifdibuat'] = $this->Foodtin_model->getsdgdibuat();
         $this->load->view('TemplateAdmin/HeaderAdmin', $data);
         $this->load->view('User/pesananpenjual', $data);
+        $this->load->view('TemplateAdmin/FooterAdmin');
+    }
+
+    public function sendmenu($id)
+    {
+        $data['title'] = 'Antar';
+        $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
+        $data['menu'] = $this->Foodtin_model->getmenubyid($id);
+        $data['notifdiantar'] = $this->Foodtin_model->getsdhdiantar();
+        $data['notifdibuat'] = $this->Foodtin_model->getsdgdibuat();
+        $this->load->view('TemplateAdmin/HeaderAdmin', $data);
+        $this->load->view('User/Kirimmenu', $data);
+        $this->load->view('TemplateAdmin/FooterAdmin');
+    }
+
+    public function kirimmenu()
+    {
+        $id = $this->input->post('id', true);
+        $nm = $this->input->post('nama', true);
+        $kls = $this->input->post('kls', true);
+        $menu = $this->input->post('menu', true);
+        $hrg = $this->input->post('harga', true);
+        $jml = $this->input->post('jml', true);
+        $tothrg = $this->input->post('tothrg', true);
+        $tambahan = $this->input->post('tambahan', true);
+        $status = $this->input->post('status', true);
+
+        $this->db->set('nm_pembeli', $nm);
+        $this->db->set('kelas_pembeli', $kls);
+        $this->db->set('menu', $menu);
+        $this->db->set('harga', $hrg);
+        $this->db->set('jumlah', $jml);
+        $this->db->set('tot_harga', $tothrg);
+        $this->db->set('tambahan', $tambahan);
+        $this->db->set('status', $status);
+        $this->db->where('id_transaksi', $id);
+        $this->db->update('transaksi');
+        $this->session->set_flashdata('kirim', 'Berhasil');
+        redirect('User/pesananpenjual');
+    }
+
+    public function pesanandiantar()
+    {
+        $data['title'] = 'Sudah Di Antar';
+        $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
+        $data['transaksi'] = $this->Foodtin_model->getsudahdiantar();
+        $data['notifdiantar'] = $this->Foodtin_model->getsdhdiantar();
+        $data['notifdibuat'] = $this->Foodtin_model->getsdgdibuat();
+        $this->load->view('TemplateAdmin/HeaderAdmin', $data);
+        $this->load->view('User/Pesanandiantar', $data);
+        $this->load->view('TemplateAdmin/FooterAdmin');
+    }
+
+    public function pesananpembelidibuat()
+    {
+        $data['title'] = 'Pesanan Saya';
+        $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
+        $data['pesanan'] = $this->Foodtin_model->pesanansaya();
+        $data['diantar'] = $this->Foodtin_model->pesanansayasdgdiantar();
+        $data['dibuat'] = $this->Foodtin_model->pesanansayasdgdibuat();
+        $data['diterima'] = $this->Foodtin_model->pesanansayaselesai();
+        $data['pesanansaya'] = $this->Foodtin_model->getpesanansayadibuat();
+        $this->load->view('TemplateAdmin/HeaderAdmin', $data);
+        $this->load->view('User/Pesananpembelidibuat', $data);
+        $this->load->view('TemplateAdmin/FooterAdmin');
+    }
+
+    public function pesananpembelidiantar()
+    {
+        $data['title'] = 'Pesanan Saya';
+        $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
+        $data['pesanan'] = $this->Foodtin_model->pesanansaya();
+        $data['diantar'] = $this->Foodtin_model->pesanansayasdgdiantar();
+        $data['dibuat'] = $this->Foodtin_model->pesanansayasdgdibuat();
+        $data['diterima'] = $this->Foodtin_model->pesanansayaselesai();
+        $data['pesanansaya'] = $this->Foodtin_model->getpesanansayadiantar();
+        $this->load->view('TemplateAdmin/HeaderAdmin', $data);
+        $this->load->view('User/Pesananpembelidiantar', $data);
+        $this->load->view('TemplateAdmin/FooterAdmin');
+    }
+
+    public function pesananselesai()
+    {
+        $data['title'] = 'Pesanan Saya';
+        $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
+        $data['pesanan'] = $this->Foodtin_model->pesanansaya();
+        $data['diantar'] = $this->Foodtin_model->pesanansayasdgdiantar();
+        $data['dibuat'] = $this->Foodtin_model->pesanansayasdgdibuat();
+        $data['diterima'] = $this->Foodtin_model->pesanansayaselesai();
+        $data['pesanansaya'] = $this->Foodtin_model->getpesanansayaselesai();
+        $this->load->view('TemplateAdmin/HeaderAdmin', $data);
+        $this->load->view('User/Pesananpembeliselesai', $data);
+        $this->load->view('TemplateAdmin/FooterAdmin');
+    }
+
+    public function pesananditerima($id)
+    {
+        $data['title'] = 'Pesanan Diterima';
+        $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
+        $data['pesanan'] = $this->Foodtin_model->pesanansaya();
+        $data['diantar'] = $this->Foodtin_model->pesanansayasdgdiantar();
+        $data['dibuat'] = $this->Foodtin_model->pesanansayasdgdibuat();
+        $data['diterima'] = $this->Foodtin_model->pesanansayaselesai();
+        $data['menu'] = $this->Foodtin_model->getpesanansayabyid($id);
+        $this->load->view('TemplateAdmin/HeaderAdmin', $data);
+        $this->load->view('User/Pesananditerima', $data);
+        $this->load->view('TemplateAdmin/FooterAdmin');
+    }
+
+    public function menuditerima()
+    {
+        $id = $this->input->post('id', true);
+        $menu = $this->input->post('menu', true);
+        $hrg = $this->input->post('harga', true);
+        $jml = $this->input->post('jml', true);
+        $tothrg = $this->input->post('tothrg', true);
+        $tambahan = $this->input->post('tambahan', true);
+        $status = $this->input->post('status', true);
+
+        $this->db->set('menu', $menu);
+        $this->db->set('harga', $hrg);
+        $this->db->set('jumlah', $jml);
+        $this->db->set('tot_harga', $tothrg);
+        $this->db->set('tambahan', $tambahan);
+        $this->db->set('status', $status);
+        $this->db->where('id_transaksi', $id);
+        $this->db->update('transaksi');
+        redirect('User/pesananselesai');
+    }
+
+    public function pesanansdhditerima()
+    {
+        $data['title'] = 'Pesanan Diterima';
+        $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
+        $data['transaksi'] = $this->Foodtin_model->getsudahditerima();
+        $data['notifdiantar'] = $this->Foodtin_model->getsdhdiantar();
+        $data['notifdibuat'] = $this->Foodtin_model->getsdgdibuat();
+        $data['notifditerima'] = $this->Foodtin_model->getsdhditerima();
+        $this->load->view('TemplateAdmin/HeaderAdmin', $data);
+        $this->load->view('User/Pesanansdhditerima', $data);
         $this->load->view('TemplateAdmin/FooterAdmin');
     }
 }

@@ -34,7 +34,7 @@
             <!-- Sidebar user panel (optional) -->
             <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                 <div class="info">
-                    <a href="#" class="d-block">Selamat Datang <?= $user['username']; ?></a>
+                    <a href="#" class="d-block">Selamat Datang <br> <?= $user['username']; ?></a>
                 </div>
             </div>
 
@@ -52,7 +52,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="<?= base_url(); ?>User/userpembeli" class="nav-link">
+                        <a href="<?= base_url(); ?>User/userpenjual" class="nav-link">
                             <i class="nav-icon fas fa-user-circle"></i>
                             <p>
                                 Profile
@@ -63,7 +63,25 @@
                         <a href="<?= base_url(); ?>User/produkpenjual" class="nav-link">
                             <i class="nav-icon fas fa-hamburger"></i>
                             <p>
-                                Product
+                                Menu
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="<?= base_url(); ?>User/pesananpenjual" class="nav-link">
+                            <span class="badge badge-primary navbar-badge"><?= $notifdibuat; ?></span>
+                            <i class="nav-icon fas fa-utensils"></i>
+                            <p>
+                                Pesanan Pembeli
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="<?= base_url(); ?>User/pesanandiantar" class="nav-link">
+                            <span class="badge badge-primary navbar-badge"><?= $notifdiantar; ?></span>
+                            <i class="nav-icon fas fa-paper-plane"></i>
+                            <p>
+                                Pesanan Diantar
                             </p>
                         </a>
                     </li>
